@@ -45,7 +45,7 @@ export const Sidebar = () => {
           animate={isOpen ? "open" : "closed"}
           variants={variants}
           ref={ref}
-          className={` md:hidden absolute z-50 flex flex-col justify-around bg-neutral-50 w-1/2 h-full px-8 py-8  `}
+          className={` md:hidden absolute z-50 flex flex-col justify-around bg-neutral-100 w-1/2 h-full px-8 py-8  `}
         >
           {sidebarData.map((link) => {
             return (
@@ -60,11 +60,11 @@ export const Sidebar = () => {
         </motion.div>
       }
       {/* // desktop */}
-      <div className="container hidden w-60 md:block bg-neutral-50">
+      <div className="container hidden w-60 md:block bg-neutral-100">
         <div className="flex flex-col w-full h-full divide-y divide-dashed ">
           {sidebarData.map((link) => {
             return (
-              <div className="hover:bg-neutral-100 transition ease-in-out delay-80 px-5 py-5">
+              <div className="hover:bg-neutral-200 transition ease-in-out delay-80 px-5 py-5 ">
                 <SidebarLink
                   key={link.name}
                   name={link.name}

@@ -10,9 +10,9 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 
 const App = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-neutral-50 ">
       <Sidebar />
-      <div className="w-full ml-24 md:ml-0 px-8 py-8">
+      <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="market" element={<Market />} />
