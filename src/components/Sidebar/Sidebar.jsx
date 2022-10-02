@@ -64,13 +64,11 @@ export const Sidebar = () => {
         <div className="flex flex-col w-full h-full divide-y divide-dashed ">
           {sidebarData.map((link) => {
             return (
-              <div className="hover:bg-neutral-200 transition ease-in-out delay-80 px-5 py-5 ">
-                <SidebarLink
-                  key={link.name}
-                  name={link.name}
-                  to={link.to}
-                  icon={link.icon}
-                />
+              <div
+                className="hover:bg-neutral-200 transition ease-in-out delay-80 px-5 py-5"
+                key={link.name}
+              >
+                <SidebarLink name={link.name} to={link.to} icon={link.icon} />
               </div>
             );
           })}
