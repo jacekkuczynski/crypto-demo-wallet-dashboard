@@ -8,7 +8,9 @@ export const selectedCoinsSlice = createSlice({
       state.value = [...state.value, action.payload].flat();
     },
     removeSelectedCoins: (state, action) => {
-      state.value.filter((n) => !action.payload.includes(n));
+      state.value = state.value.filter((el) => {
+        return el !== action.payload;
+      });
     },
   },
 });

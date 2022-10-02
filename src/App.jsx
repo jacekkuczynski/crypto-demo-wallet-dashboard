@@ -22,7 +22,7 @@ const App = () => {
   }, [data]);
 
   return (
-    <div className="flex h-screen bg-neutral-50 ">
+    <div className="flex h-screen bg-neutral-50  ">
       <Sidebar />
       <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
         <Routes>

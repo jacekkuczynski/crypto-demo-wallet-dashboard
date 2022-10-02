@@ -34,7 +34,7 @@ export const CoinSelect = ({ coinData }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col justify-around border drop-shadow-xl p-5 w-full h-40 bg-neutral-50">
       <Toaster />
 
       <CreatableSelect
