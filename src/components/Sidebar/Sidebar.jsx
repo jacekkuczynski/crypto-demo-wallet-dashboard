@@ -71,7 +71,6 @@ export const Sidebar = () => {
                     ? "bg-neutral-200 drop-shadow-sm rounded-lg"
                     : "bg-neutral-100"
                 }
-                // className={(state) => console.log(state.isActive)}
               >
                 <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
                   <SidebarItem name={link.name} icon={link.icon} />

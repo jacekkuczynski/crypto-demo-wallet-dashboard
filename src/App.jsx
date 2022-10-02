@@ -18,7 +18,6 @@ const App = () => {
   useEffect(() => {
     if (data) {
       setCoinData(data);
-      console.log(coinData);
     }
   }, [data]);
 
