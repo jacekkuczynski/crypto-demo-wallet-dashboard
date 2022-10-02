@@ -1,8 +1,9 @@
 import { sidebarData } from "./sidebarData";
-import { SidebarLink } from "./SidebarLink";
+import { SidebarItem } from "./SidebarItem";
 import { useState, useEffect, useRef } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { Link, NavLink } from "react-router-dom";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -49,12 +50,9 @@ export const Sidebar = () => {
         >
           {sidebarData.map((link) => {
             return (
-              <SidebarLink
-                key={link.name}
-                name={link.name}
-                to={link.to}
-                icon={link.icon}
-              />
+              <Link key={link.name} to={link.to}>
+                <SidebarItem name={link.name} icon={link.icon} />
+              </Link>
             );
           })}
         </motion.div>
@@ -64,14 +62,20 @@ export const Sidebar = () => {
         <div className="flex flex-col w-full h-full divide-y divide-dashed ">
           {sidebarData.map((link) => {
             return (
-              <div className="hover:bg-neutral-200 transition ease-in-out delay-80 px-5 py-5 ">
-                <SidebarLink
-                  key={link.name}
-                  name={link.name}
-                  to={link.to}
-                  icon={link.icon}
-                />
-              </div>
+              <NavLink
+                key={link.name}
+                end
+                to={link.to}
+                className={(state) =>
+                  state.isActive
+                    ? "bg-neutral-200 drop-shadow-sm rounded-lg"
+                    : "bg-neutral-100"
+                }
+              >
+                <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
+                  <SidebarItem name={link.name} icon={link.icon} />
+                </div>
+              </NavLink>
             );
           })}
         </div>
