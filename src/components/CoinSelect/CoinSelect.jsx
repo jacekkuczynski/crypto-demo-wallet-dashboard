@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import CreatableSelect from "react-select/creatable";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addSelectedCoins } from "../../features/selectedCoins/selectedCoinsSlice";
 import { useCoinSelectOptions } from "./useCoinSelectOptions";
 import toast from "react-hot-toast";
@@ -8,14 +8,9 @@ import { Toaster } from "react-hot-toast";
 
 export const CoinSelect = ({ coinData }) => {
   const [selectedCoins, setSelectedCoins] = useState(null);
-  const [selectOptions, setSelectOptions] = useState(null);
   const ref = useRef();
   const dispatch = useDispatch();
   const coinSelectOptions = useCoinSelectOptions(coinData);
-
-  useEffect(() => {
-    setSelectOptions(coinSelectOptions);
-  }, [coinSelectOptions]);
 
   const handleChange = (newValue) => {
     setSelectedCoins(
