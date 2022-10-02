@@ -9,7 +9,7 @@ export const SelectedCoins = ({ coinData }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex flex-col justify-center gap-4 overflow-auto h-fit border drop-shadow-xl p-5 w-full bg-neutral-50">
+    <div className="flex flex-col justify-center gap-4 overflow-auto h-fit border drop-shadow-lg p-5 w-full bg-neutral-50">
       {selectedCoins.length > 0 ? (
         <h2 className="text-2xl font-bold	text-neutral-700">Coin Watchlist</h2>
       ) : (
@@ -34,9 +34,7 @@ export const SelectedCoins = ({ coinData }) => {
               <button
                 className="flex items-center justify-center px-4 pt-4 pb-5 border hover:bg-neutral-200 rounded-full w-4 h-4"
                 onClick={() => {
-                  console.log("clicked");
                   dispatch(removeSelectedCoins(coin));
-                  console.log(coin);
                 }}
               >
                 x
