@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import { coinsIDs } from "./coinsIDs";
 
 export const useFetchCoinsData = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const coinsIDsParams = coinsIDs.join(",");
+  //fetch 100 coins sorted by market cap descending
+  const url =
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=%20market_cap_desc&per_page=100";
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinsIDsParams}`
-      )
+      .get(url)
       .then((response) => {
         setData(
           response.data.map((el) => {
@@ -24,7 +23,7 @@ export const useFetchCoinsData = () => {
               symbol: el.symbol,
               name: el.name,
               price: el.current_price,
-              logo: el.image,
+              image: el.image,
             };
           })
         );
