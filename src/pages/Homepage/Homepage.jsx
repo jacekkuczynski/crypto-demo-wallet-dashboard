@@ -8,10 +8,10 @@ import { Weather } from "../../components/Weather/Weather";
 export const Homepage = ({ coinData }) => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="flex gap-4">
         <Greetings />
-        <Weather />
         <ClocksBoard />
+        <Weather />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <CoinSelect coinData={coinData} />

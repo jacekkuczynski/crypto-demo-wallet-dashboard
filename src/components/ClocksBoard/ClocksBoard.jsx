@@ -5,8 +5,8 @@ export const ClocksBoard = () => {
   const times = useGetTimes();
 
   return (
-    <div className="grid grid-cols-2 w-full">
-      <div>
+    <div className="grid grid-cols-2 w-1/2">
+      <div className="flex flex-col items-center justify-center">
         <p>Local Time:</p>
         <SingleClock initialVal={new Date()} />
       </div>
