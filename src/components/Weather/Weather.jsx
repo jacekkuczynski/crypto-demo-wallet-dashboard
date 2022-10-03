@@ -4,14 +4,9 @@ import { useEffect } from "react";
 export const Weather = () => {
   const { data: weatherData } = useFetchWeatherData();
 
-  useEffect(() => {
-    if (weatherData) {
-      console.log(weatherData);
-    }
-  }, [weatherData]);
   if (weatherData) {
     return (
-      <div className="w-full  p-5 shadow-md border bg-sky-50">
+      <div className="w-1/2  p-5 shadow-md border bg-sky-50">
         <div className="text-2xl font-bold text-neutral-700">
           Perfect weather for investments!
         </div>
@@ -27,6 +22,8 @@ export const Weather = () => {
       </div>
     );
   } else {
-    return <div className="hidden"></div>;
+    return (
+      <div className="">Allow geolocation to enable weather component</div>
+    );
   }
 };
