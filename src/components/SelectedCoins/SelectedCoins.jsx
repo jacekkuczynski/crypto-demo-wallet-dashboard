@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
 import { useDispatch } from "react-redux";
 import { removeSelectedCoins } from "../../features/selectedCoins/selectedCoinsSlice";
@@ -34,6 +35,9 @@ export const SelectedCoins = ({ coinData }) => {
               <button
                 className="flex items-center justify-center px-4 pt-4 pb-5 border hover:bg-neutral-200 rounded-full w-4 h-4"
                 onClick={() => {
+                  toast.success(`${coin} removed from watchlist`, {
+                    duration: 4000,
+                  });
                   dispatch(removeSelectedCoins(coin));
                 }}
               >

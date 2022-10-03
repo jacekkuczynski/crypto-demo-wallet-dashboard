@@ -1,5 +1,5 @@
 import React from "react";
-import { ClocksBoard } from "../../components/ClocksBoard/ClockBoard";
+import { ClocksBoard } from "../../components/ClocksBoard/ClocksBoard";
 import { CoinSelect } from "../../components/CoinSelect/CoinSelect";
 import { Greetings } from "../../components/Greetings/Greetings";
 import { SelectedCoins } from "../../components/SelectedCoins/SelectedCoins";
