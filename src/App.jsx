@@ -9,6 +9,7 @@ import { Faq } from "./pages/Faq/Faq";
 import { Support } from "./pages/Support/Support";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { useFetchCoinsData } from "./api/useFetchCoinsData";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <div className="flex h-screen bg-neutral-50  ">
+      <Toaster position="top-center" />
       <Sidebar />
       <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
         <Routes>
