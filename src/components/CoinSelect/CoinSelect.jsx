@@ -22,9 +22,11 @@ export const CoinSelect = ({ coinData }) => {
   const handleSubmit = () => {
     dispatch(addSelectedCoins(selectedCoins));
     ref.current.clearValue();
-    toast.success(`${selectedCoins.join(", ")} added to watchlist!`, {
-      duration: 4000,
-    });
+    if (selectedCoins.length > 0) {
+      toast.success(`${selectedCoins.join(", ")} added to watchlist!`, {
+        duration: 4000,
+      });
+    }
   };
 
   return (
