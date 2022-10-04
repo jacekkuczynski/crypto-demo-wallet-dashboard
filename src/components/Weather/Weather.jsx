@@ -14,7 +14,7 @@ export const Weather = () => {
           <p>{weatherData.temp}°C</p>
           <p>{weatherData.weather}</p>
           <p>{weatherData.description}</p>
-          <div className="shadow-sm w-fit m-2">
+          <div className="shadow-sm w-fit m-2 bg-white">
             <img
               src={weatherData.image}
               alt={weatherData.weather + " image"}
