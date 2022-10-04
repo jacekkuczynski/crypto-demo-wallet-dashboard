@@ -1,18 +1,11 @@
-import { useState } from "react";
 import { loginWithEmailAndPassword } from "../../firebase/loginWithEmailAndPassword";
-export const LoginForm = () => {
-  const [loginData, setLoginData] = useState(null);
 
+export const LoginForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
-
     loginWithEmailAndPassword(email, password);
-    console.group();
-    console.log(email);
-    console.log(password);
-    console.groupEnd();
   };
 
   return (
