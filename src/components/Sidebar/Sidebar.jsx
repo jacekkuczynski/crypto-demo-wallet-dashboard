@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
+import { LogoutBtn } from "../LogoutBtn/LogoutBtn";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -55,6 +56,7 @@ export const Sidebar = () => {
               </Link>
             );
           })}
+          <LogoutBtn />
         </motion.div>
       }
       {/* // desktop */}
@@ -78,6 +80,7 @@ export const Sidebar = () => {
               </NavLink>
             );
           })}
+          <LogoutBtn />
         </div>
       </div>
     </>
