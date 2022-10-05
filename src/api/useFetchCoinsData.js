@@ -24,6 +24,11 @@ export const useFetchCoinsData = () => {
               name: el.name,
               price: el.current_price,
               image: el.image,
+              high: el.high_24h,
+              low: el.low_24h,
+              priceChange: el.price_change_percentage_24h,
+              ath: el.ath,
+              athDate: el.ath_date,
             };
           })
         );
