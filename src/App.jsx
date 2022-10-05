@@ -10,11 +10,14 @@ import { Support } from "./pages/Support/Support";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { useFetchCoinsData } from "./api/useFetchCoinsData";
 import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useSetUserState } from "./hooks/useSetUserState";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
-
   const { data } = useFetchCoinsData();
+  const isUser = useSelector((state) => state.user.value);
+  useSetUserState();
 
   useEffect(() => {
     if (data) {
