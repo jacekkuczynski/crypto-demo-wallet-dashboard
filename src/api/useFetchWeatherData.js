@@ -13,7 +13,8 @@ export const useFetchWeatherData = () => {
 
   const latitude = coordinates?.latitude;
   const longitude = coordinates?.longitude;
-  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+  // const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+  const apiKey = "f0663bce71b86d5c2d154f0d593b47e8";
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
   useEffect(() => {
