@@ -5,6 +5,7 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import { LogoutBtn } from "../LogoutBtn/LogoutBtn";
+import { UsersCash } from "../UsersCash/UsersCash";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -61,27 +62,33 @@ export const Sidebar = () => {
       }
       {/* // desktop */}
       <div className="container hidden w-60 md:block bg-neutral-100">
-        <div className="flex flex-col w-full h-full divide-y divide-dashed ">
-          {sidebarData.map((link) => {
-            return (
-              <NavLink
-                key={link.name}
-                end
-                to={link.to}
-                className={(state) =>
-                  state.isActive
-                    ? "bg-neutral-200 drop-shadow-sm rounded-lg"
-                    : "bg-neutral-100"
-                }
-              >
-                <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
-                  <SidebarItem name={link.name} icon={link.icon} />
-                </div>
-              </NavLink>
-            );
-          })}
-          <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
-            <LogoutBtn />
+        <div className="flex flex-col w-full justify-between h-full ">
+          <div>
+            {" "}
+            {sidebarData.map((link) => {
+              return (
+                <NavLink
+                  key={link.name}
+                  end
+                  to={link.to}
+                  className={(state) =>
+                    state.isActive
+                      ? "bg-neutral-200 drop-shadow-sm rounded-lg"
+                      : "bg-neutral-100"
+                  }
+                >
+                  <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
+                    <SidebarItem name={link.name} icon={link.icon} />
+                  </div>
+                </NavLink>
+              );
+            })}
+            <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
+              <LogoutBtn />
+            </div>
+          </div>
+          <div className="mb-16">
+            <UsersCash />
           </div>
         </div>
       </div>
