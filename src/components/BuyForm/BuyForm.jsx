@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import { useRef, useEffect } from "react";
+import { useRef, useState } from "react";
 
 export const BuyForm = () => {
+  const [rangeValue, setRangeValue] = useState(100);
   const selectOptions = useSelector((state) => state.selectedCoins.value);
   const ref = useRef();
 
@@ -30,7 +31,18 @@ export const BuyForm = () => {
           })}
         </select>
         <input type="range"></input>
-        <input valueAsNumber="100" type="number" id="coinAmount"></input>
+        <input
+          onChange={(e) => {
+            e.preventDefault();
+            setRangeValue(e.target.value);
+            console.log(e.target.value);
+          }}
+          value={rangeValue}
+          type="number"
+          id="coinAmount"
+          min="0"
+          max="100"
+        ></input>
         <input type="number" id="usdAmount"></input>
         <button
           type="submit"

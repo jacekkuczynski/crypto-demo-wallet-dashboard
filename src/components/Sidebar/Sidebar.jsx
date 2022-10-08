@@ -80,7 +80,9 @@ export const Sidebar = () => {
               </NavLink>
             );
           })}
-          <LogoutBtn />
+          <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
+            <LogoutBtn />
+          </div>
         </div>
       </div>
     </>
