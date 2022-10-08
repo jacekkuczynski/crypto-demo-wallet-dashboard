@@ -46,28 +46,6 @@ const App = () => {
       </div>
     </div>
   );
-
-  // if (!isUser) {
-  //   return <LoginPage />;
-  // } else {
-  //   return (
-  //     <div className="flex h-screen bg-neutral-50  ">
-  //       <Toaster position="top-center" />
-  //       <Sidebar />
-  //       <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
-  //         <Routes>
-  //           <Route path="/" element={<Homepage coinData={coinData} />} />
-  //           <Route path="market" element={<Market />} />
-  //           <Route path="history" element={<History />} />
-  //           <Route path="positions" element={<Positions />} />
-  //           <Route path="faq" element={<Faq />} />
-  //           <Route path="support" element={<Support />} />
-  //           <Route path="buy" element={<Buy />} />
-  //         </Routes>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 };
 
 export default App;
