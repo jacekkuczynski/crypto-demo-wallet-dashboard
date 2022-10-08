@@ -1,7 +1,6 @@
 import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { SignUpForm } from "../../components/SignUpForm/SignUpForm";
 import { useState } from "react";
-import { LogoutBtn } from "../../components/LogoutBtn/LogoutBtn";
 
 export const LoginPage = () => {
   const signUpBtn = (
@@ -28,18 +27,21 @@ export const LoginPage = () => {
 
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      <div>
-        {isLogin ? <LoginForm /> : <SignUpForm />}
-        <div className="flex justify-between underline text-blue-500 ">
-          {isLogin ? signUpBtn : loginBtn}
-          <button className="hover:text-blue-400"></button>
-          <button className="hover:text-blue-400">forgot password</button>
+    <>
+      <div className="flex flex-col items-center justify-start w-screen h-screen">
+        <div className=" mt-32 pb-12 text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-t from-neutral-400 to-sky-800">
+          CRYPTOCURRENCY DEMO WALLET
         </div>
-        <div className="flex  justify-center">
-          <LogoutBtn />
+        <div>
+          {isLogin ? <LoginForm /> : <SignUpForm />}
+          <div className="flex justify-between underline text-blue-500 ">
+            {isLogin ? signUpBtn : loginBtn}
+            <button className="hover:text-blue-400"></button>
+            <button className="hover:text-blue-400">forgot password</button>
+          </div>
+          <div className="flex  justify-center"></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
