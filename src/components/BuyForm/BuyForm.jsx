@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { SELECT_OPTIONS } from "./SELECT_OPTIONS";
 import { handleSelectChange, handleSubmit } from "./buyFormHandlers";
+import { RANGE_PERCENT_INPUT } from "./RANGE_PERCENT_INPUT";
 
 export const BuyForm = ({ coinData }) => {
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -32,6 +33,10 @@ export const BuyForm = ({ coinData }) => {
     setSelectedCoin(selectVal);
   };
 
+  const handleRangeChange = (rangeVal) => {
+    setRangeValue(rangeVal);
+  };
+
   return (
     <div className="text-2xl font-bold flex flex-col gap-4 divide-y-8">
       <div>
@@ -39,25 +44,13 @@ export const BuyForm = ({ coinData }) => {
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 py-4">
         <SELECT_OPTIONS onChange={handleSelectChange} />
-        {/* <label htmlFor="range">Select Percent of you cash</label>
-        {selectedCoin?.length < 1 ? (
-          <input type="range" disabled></input>
-        ) : (
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            id="range"
-            value={rangeValue}
-            onChange={(e) => {
-              e.preventDefault();
-              setRangeValue(e.target.value);
-            }}
-          ></input>
-        )}
+        <RANGE_PERCENT_INPUT
+          value={rangeValue}
+          selectedCoin={selectedCoin}
+          onChange={handleRangeChange}
+        />
 
-        <label htmlFor="coinAmount">percentage of account</label>
+        {/* <label htmlFor="coinAmount">percentage of account</label>
         <input
           onChange={(e) => {
             e.preventDefault();
