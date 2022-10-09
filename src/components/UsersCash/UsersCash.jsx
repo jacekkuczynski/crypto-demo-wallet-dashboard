@@ -6,7 +6,7 @@ export const UsersCash = () => {
   return (
     <div className="text-center font-semibold">
       <div>Your cash:</div>
-      <div className="tracking-wider text-green-800	">${cash}</div>
+      <div className="tracking-wider text-green-800	">${cash.toFixed(2)}</div>
     </div>
   );
 };

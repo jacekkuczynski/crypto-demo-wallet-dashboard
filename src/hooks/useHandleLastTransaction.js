@@ -18,14 +18,24 @@ export const useHandleLastTransaction = () => {
 
   useEffect(() => {
     if (data) {
-      toast.success(
-        `Congratulations! You just bought ${
-          data.amount
-        } of ${capitalizeFirstLetter(data.id)} for $${
-          data.cost
-        } (current coin price: ${data.price})`,
-        { duration: 10000, icon: "🎉" }
-      );
+      //if instead of ternary; ternary only with simple
+      data.side === "buy"
+        ? toast.success(
+            `Congratulations! You just bought ${
+              data.amount
+            } of ${capitalizeFirstLetter(data.id)} for $${
+              data.cost
+            } (current coin price: ${data.price})`,
+            { duration: 10000, icon: "🎉" }
+          )
+        : toast.success(
+            `Congratulations! You just sold ${
+              data.amount
+            } of ${capitalizeFirstLetter(data.id)} for $${
+              data.cost
+            } (current coin price: ${data.price})`,
+            { duration: 10000, icon: "🎉" }
+          );
     }
 
     console.log(data);

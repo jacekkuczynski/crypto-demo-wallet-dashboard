@@ -21,6 +21,7 @@ export const BuyForm = ({ coinData }) => {
   const selectedCoinPrice = coinData?.find((coin) => {
     return coin.id === selectedCoin;
   })?.price;
+  const initialValue = 0;
 
   // //cost of transaction
   useEffect(() => {
@@ -38,6 +39,8 @@ export const BuyForm = ({ coinData }) => {
     }
   }, [cost, selectedCoinPrice]);
 
+  //initial instead of 0
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const transactionData = {
@@ -48,11 +51,11 @@ export const BuyForm = ({ coinData }) => {
       cost: cost,
       date: getCurrentDate(),
     };
-    if (rangeValue > 0) {
+    if (rangeValue > initialValue) {
       dispatch(setLastTransaction(transactionData));
-      setRangeValue(0);
-      setCost(0);
-      setAmount(0);
+      setRangeValue(initialValue);
+      setCost(initialValue);
+      setAmount(initialValue);
       setSide("");
     }
   };
