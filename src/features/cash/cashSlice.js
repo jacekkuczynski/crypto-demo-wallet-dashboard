@@ -7,7 +7,7 @@ export const cashSlice = createSlice({
   },
   reducers: {
     setCash: (state, action) => {
-      state.value.cash = action.payload;
+      state.value = action.payload;
     },
   },
 });

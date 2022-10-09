@@ -13,15 +13,14 @@ import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useSetUserState } from "./hooks/useSetUserState";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
-import { useFirebase } from "./hooks/useFirebase";
+import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
   const { data } = useFetchCoinsData();
   const isUser = useSelector((state) => state.user.value);
   useSetUserState();
-  useFirebase();
-
+  useHandleLastTransaction();
   useEffect(() => {
     if (data) {
       setCoinData(data);
@@ -33,7 +32,7 @@ const App = () => {
     <LoginPage />
   ) : (
     <div className="flex min-h-screen bg-neutral-50  ">
-      <Toaster position="top-center" />
+      <Toaster position="bottom-right" />
       <Sidebar />
       <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
         <Routes>

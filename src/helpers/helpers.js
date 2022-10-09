@@ -10,6 +10,14 @@ export const getCityTime = (times, city) => {
   }).time;
 };
 
-export const computeTransValue = (price, amount) => {
-  return price * amount;
+export const computeCoinAmount = (transactionCost, coinPrice) => {
+  return transactionCost / coinPrice;
+};
+
+export const computeTransCost = (percentOfAccount, cash) => {
+  return (percentOfAccount * cash) / 100;
+};
+
+export const getCurrentDate = () => {
+  return new Date().toUTCString();
 };
