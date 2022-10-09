@@ -1,4 +1,6 @@
 export const RANGE_PERCENT_INPUT = ({ selectedCoin, onChange, rangeValue }) => {
+  console.log(rangeValue);
+
   return (
     <>
       <label htmlFor="range">Select Percent of you cash</label>

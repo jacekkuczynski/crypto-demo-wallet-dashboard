@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { SELECT_OPTIONS } from "./SELECT_OPTIONS";
 import { handleSelectChange, handleSubmit } from "./buyFormHandlers";
 import { RANGE_PERCENT_INPUT } from "./RANGE_PERCENT_INPUT";
+import { CASH_PERCENT_INPUT } from "./CASH_PERCENT_INPUT";
 
 export const BuyForm = ({ coinData }) => {
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -27,8 +28,6 @@ export const BuyForm = ({ coinData }) => {
   //   }
   // }, [cost, selectedCoinPrice]);
 
-  console.count("render");
-
   const handleSelectChange = (selectVal) => {
     setSelectedCoin(selectVal);
   };
@@ -45,24 +44,11 @@ export const BuyForm = ({ coinData }) => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 py-4">
         <SELECT_OPTIONS onChange={handleSelectChange} />
         <RANGE_PERCENT_INPUT
-          value={rangeValue}
+          rangeValue={rangeValue}
           selectedCoin={selectedCoin}
           onChange={handleRangeChange}
         />
-
-        {/* <label htmlFor="coinAmount">percentage of account</label>
-        <input
-          onChange={(e) => {
-            e.preventDefault();
-            setRangeValue(e.target.value);
-          }}
-          value={rangeValue}
-          type="number"
-          id="coinAmount"
-          min="0"
-          max="100"
-          step="1"
-        ></input>
+        <CASH_PERCENT_INPUT rangeValue={rangeValue} />
         <label htmlFor="cost" type="number" value={cost}>
           Cost:
         </label>
@@ -86,7 +72,7 @@ export const BuyForm = ({ coinData }) => {
           className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
         >
           Sell
-        </button> */}
+        </button>
       </form>
     </div>
   );
