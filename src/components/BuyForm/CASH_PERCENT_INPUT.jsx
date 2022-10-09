@@ -1,5 +1,4 @@
 export const CASH_PERCENT_INPUT = ({ rangeValue }) => {
-  console.log(rangeValue);
   return (
     <>
       <label htmlFor="coinAmount">percentage of account</label>

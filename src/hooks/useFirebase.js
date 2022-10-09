@@ -12,7 +12,5 @@ export const useFirebase = () => {
   const userID = useSelector((state) => state.user.value?.id);
   const userCash = useSelector((state) => state.cash.value);
 
-  console.log(userCash);
-
   useEffect(() => {}, [selectedCoins]);
 };

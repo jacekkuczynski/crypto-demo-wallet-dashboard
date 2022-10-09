@@ -4,6 +4,9 @@ import { SELECT_OPTIONS } from "./SELECT_OPTIONS";
 import { handleSelectChange, handleSubmit } from "./buyFormHandlers";
 import { RANGE_PERCENT_INPUT } from "./RANGE_PERCENT_INPUT";
 import { CASH_PERCENT_INPUT } from "./CASH_PERCENT_INPUT";
+import { COST_INPUT } from "./COST_INPUT";
+import { AMOUNT_INPUT } from "./AMOUNT_INPUT";
+import { SUBMIT_BUTTONS } from "./SUBMIT_BUTTONS";
 
 export const BuyForm = ({ coinData }) => {
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -16,17 +19,18 @@ export const BuyForm = ({ coinData }) => {
   })?.price;
 
   // //cost of transaction
-  // useEffect(() => {
-  //   if (cash && coinData && selectedCoin) {
-  //     setCost((rangeValue * cash) / 100);
-  //   }
-  // }, [cash, coinData, selectedCoin, selectedCoinPrice, rangeValue]);
+  useEffect(() => {
+    if (cash && coinData && selectedCoin) {
+      setCost((rangeValue * cash) / 100);
+    }
+  }, [cash, coinData, selectedCoin, selectedCoinPrice, rangeValue]);
 
-  // useEffect(() => {
-  //   if (cost && selectedCoinPrice) {
-  //     setAmount(cost / selectedCoinPrice);
-  //   }
-  // }, [cost, selectedCoinPrice]);
+  //coins amount
+  useEffect(() => {
+    if (cost && selectedCoinPrice) {
+      setAmount(cost / selectedCoinPrice);
+    }
+  }, [cost, selectedCoinPrice]);
 
   const handleSelectChange = (selectVal) => {
     setSelectedCoin(selectVal);
@@ -49,30 +53,9 @@ export const BuyForm = ({ coinData }) => {
           onChange={handleRangeChange}
         />
         <CASH_PERCENT_INPUT rangeValue={rangeValue} />
-        <label htmlFor="cost" type="number" value={cost}>
-          Cost:
-        </label>
-        <input type="number" id="cost" value={cost} readOnly></input>
-
-        <label htmlFor="amount" type="number" value={cost}>
-          Amount:
-        </label>
-        <input type="number" id="amount" value={amount}></input>
-
-        <button
-          type="submit"
-          id="buy"
-          className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        >
-          Buy
-        </button>
-        <button
-          type="submit"
-          id="sell"
-          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-        >
-          Sell
-        </button>
+        <COST_INPUT cost={cost} />
+        <AMOUNT_INPUT amount={amount} />
+        <SUBMIT_BUTTONS />
       </form>
     </div>
   );
