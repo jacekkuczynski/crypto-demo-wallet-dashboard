@@ -1,10 +1,10 @@
 import React from "react";
 import { BuyForm } from "../../components/BuyForm/BuyForm";
 
-export const Buy = () => {
+export const Buy = ({ coinData }) => {
   return (
     <div className="">
-      <BuyForm />
+      <BuyForm coinData={coinData} />
     </div>
   );
 };

@@ -9,3 +9,7 @@ export const getCityTime = (times, city) => {
     return el.city === city;
   }).time;
 };
+
+export const computeTransValue = (price, amount) => {
+  return price * amount;
+};

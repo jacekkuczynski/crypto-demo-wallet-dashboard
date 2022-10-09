@@ -13,12 +13,14 @@ import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useSetUserState } from "./hooks/useSetUserState";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { useFirebase } from "./hooks/useFirebase";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
   const { data } = useFetchCoinsData();
   const isUser = useSelector((state) => state.user.value);
   useSetUserState();
+  useFirebase();
 
   useEffect(() => {
     if (data) {
@@ -41,7 +43,7 @@ const App = () => {
           <Route path="positions" element={<Positions />} />
           <Route path="faq" element={<Faq />} />
           <Route path="support" element={<Support />} />
-          <Route path="buy" element={<Buy />} />
+          <Route path="buy" element={<Buy coinData={coinData} />} />
         </Routes>
       </div>
     </div>

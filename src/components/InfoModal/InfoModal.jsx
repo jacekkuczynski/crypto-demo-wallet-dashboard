@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export const BuyModal = ({ open, onClose, data }) => {
+export const InfoModal = ({ open, onClose, data }) => {
   return (
     <>
       <Transition appear show={open} as={Fragment}>

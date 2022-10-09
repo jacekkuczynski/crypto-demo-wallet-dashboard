@@ -1,19 +1,39 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import { computeTransValue } from "../../helpers/helpers";
 
-export const BuyForm = () => {
-  const [rangeValue, setRangeValue] = useState(100);
+export const BuyForm = ({ coinData }) => {
+  const [rangeValue, setRangeValue] = useState(0);
+  const [selectedCoin, setSelectedCoin] = useState("");
+  const [cost, setCost] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const cash = useSelector((state) => state.cash.value);
   const selectOptions = useSelector((state) => state.selectedCoins.value);
-  const ref = useRef();
+  const selectedCoinPrice = coinData?.find((coin) => {
+    return coin.id === selectedCoin;
+  })?.price;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const selected = event.currentTarget.selected.value;
+
+    console.log(selected);
   };
 
-  if (ref.current?.value !== undefined) {
-    console.log(ref.current.value);
-  }
+  //cost of transaction
+  useEffect(() => {
+    if (cash && coinData && selectedCoin) {
+      setCost((rangeValue * cash) / 100);
+    }
+  }, [cash, coinData, selectedCoin, selectedCoinPrice, rangeValue]);
+
+  useEffect(() => {
+    if (cost && selectedCoinPrice) {
+      setAmount(cost / selectedCoinPrice);
+    }
+  }, [cost, selectedCoinPrice]);
+
+  console.count("render");
 
   return (
     <div className="text-2xl font-bold flex flex-col gap-4 divide-y-8">
@@ -21,7 +41,13 @@ export const BuyForm = () => {
         Select any of your coins from the watchlist to open a transaction:
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 py-4">
-        <select ref={ref}>
+        <select
+          id="selected"
+          onChange={(e) => {
+            setSelectedCoin(e.target.value);
+          }}
+        >
+          <option></option>
           {selectOptions?.map((option) => {
             return (
               <option key={option} value={option}>
@@ -30,20 +56,47 @@ export const BuyForm = () => {
             );
           })}
         </select>
-        <input type="range"></input>
+        <label htmlFor="range">Select Percent of you cash</label>
+        {selectedCoin?.length < 1 ? (
+          <input type="range" disabled></input>
+        ) : (
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            id="range"
+            value={rangeValue}
+            onChange={(e) => {
+              e.preventDefault();
+              setRangeValue(e.target.value);
+            }}
+          ></input>
+        )}
+
+        <label htmlFor="coinAmount">percentage of account</label>
         <input
           onChange={(e) => {
             e.preventDefault();
             setRangeValue(e.target.value);
-            console.log(e.target.value);
           }}
           value={rangeValue}
           type="number"
           id="coinAmount"
           min="0"
           max="100"
+          step="1"
         ></input>
-        <input type="number" id="usdAmount"></input>
+        <label htmlFor="cost" type="number" value={cost}>
+          Cost:
+        </label>
+        <input type="number" id="cost" value={cost} readOnly></input>
+
+        <label htmlFor="amount" type="number" value={cost}>
+          Amount:
+        </label>
+        <input type="number" id="amount" value={amount}></input>
+
         <button
           type="submit"
           id="buy"
