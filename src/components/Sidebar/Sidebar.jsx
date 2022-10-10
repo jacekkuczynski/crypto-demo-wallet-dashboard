@@ -1,6 +1,6 @@
 import { sidebarData } from "./sidebarData";
 import { SidebarItem } from "./SidebarItem";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
@@ -14,17 +14,12 @@ const variants = {
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef();
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
   }, []);
 
   const handleClickOutside = (e) => {
-    if (ref.current.contains(e.target)) {
-      return;
-    } else {
-      setIsOpen(false);
-    }
+    setIsOpen(false);
   };
 
   return (
@@ -47,7 +42,6 @@ export const Sidebar = () => {
         <motion.div
           animate={isOpen ? "open" : "closed"}
           variants={variants}
-          ref={ref}
           className={` md:hidden absolute z-50 flex flex-col justify-around bg-neutral-100 w-1/2 h-full px-8 py-8  `}
         >
           {sidebarData.map((link) => {

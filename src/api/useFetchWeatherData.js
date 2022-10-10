@@ -8,9 +8,6 @@ export const useFetchWeatherData = () => {
   const [error, setError] = useState(null);
   const { coordinates } = useGetCoordinates();
 
-  //   const latitudePoz = 52.4064;
-  //   const longitudePoz = 16.9252;
-
   const latitude = coordinates?.latitude;
   const longitude = coordinates?.longitude;
   // const apiKey = process.env.REACT_APP_WEATHER_API_KEY;

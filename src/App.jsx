@@ -31,10 +31,10 @@ const App = () => {
   return !isUser ? (
     <LoginPage />
   ) : (
-    <div className="flex min-h-screen bg-neutral-50  ">
+    <div className="flex min-h-screen min-w-screen bg-neutral-50  ">
       <Toaster position="bottom-right" />
       <Sidebar />
-      <div className="w-full ml-24 md:ml-0 px-8 py-8 ">
+      <div className="w-full md:ml-24 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50 ">
         <Routes>
           <Route path="/" element={<Homepage coinData={coinData} />} />
           <Route path="market" element={<Market coinData={coinData} />} />
