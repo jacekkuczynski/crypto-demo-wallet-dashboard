@@ -4,6 +4,11 @@
 //  Also, hook subscribes to any crucial state changes and saves
 //  them to the firebase database.
 
+// 1. set selected coins database
+// 2. set positions database
+// 3. set history database
+// 4. set selected coins database
+
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
