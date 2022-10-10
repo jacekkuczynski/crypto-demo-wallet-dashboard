@@ -1,5 +1,9 @@
-import React from "react";
+import { PositionsList } from "../../components/PositionsList/PositionsList";
 
 export const Positions = () => {
-  return <div>Positions</div>;
+  return (
+    <div>
+      <PositionsList />
+    </div>
+  );
 };
