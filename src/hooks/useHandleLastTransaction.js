@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { capitalizeFirstLetter } from "../helpers/helpers";
 import { setCash } from "../features/cash/cashSlice";
+import { addPosition } from "../features/positions/positionsSlice";
+
+// 1. set cash
+// 2. set positions state
+// 3. add transactions to history state
 
 export const useHandleLastTransaction = () => {
   const [data, setData] = useState(null);
@@ -13,34 +18,35 @@ export const useHandleLastTransaction = () => {
   );
 
   useEffect(() => {
-    if (lastTranasctionData) setData(lastTranasctionData);
+    if (lastTranasctionData) {
+      setData(lastTranasctionData);
+      console.log(data);
+    }
   }, [lastTranasctionData]);
 
+  //handle toast after transaction
   useEffect(() => {
     if (data) {
-      //if instead of ternary; ternary only with simple
       data.side === "buy"
         ? toast.success(
             `Congratulations! You just bought ${
               data.amount
             } of ${capitalizeFirstLetter(data.id)} for $${
               data.cost
-            } (current coin price: ${data.price})`,
-            { duration: 10000, icon: "🎉" }
+            } (current coin price: $${data.price})`,
+            { duration: 5000, icon: "🎉" }
           )
         : toast.success(
             `Congratulations! You just sold ${
               data.amount
             } of ${capitalizeFirstLetter(data.id)} for $${
               data.cost
-            } (current coin price: ${data.price})`,
-            { duration: 10000, icon: "🎉" }
+            } (current coin price: $${data.price})`,
+            { duration: 5000, icon: "🎉" }
           );
     }
-
-    console.log(data);
   }, [data]);
-
+  //handle cash state after transaction
   useEffect(() => {
     if (data) {
       let currentCash = cash - data.cost;
@@ -48,4 +54,8 @@ export const useHandleLastTransaction = () => {
       dispatch(setCash(currentCash));
     }
   }, [data, dispatch]);
+  //handle transactions state
+  useEffect(() => {
+    if (data) dispatch(addPosition(data));
+  }, [data]);
 };
