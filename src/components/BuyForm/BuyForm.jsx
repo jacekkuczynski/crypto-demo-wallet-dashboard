@@ -11,9 +11,9 @@ export const BuyForm = ({ coinData }) => {
   const [amount, setAmount] = useState(0);
   const [side, setSide] = useState("");
   const selectOptions = useSelector((state) => state.selectedCoins.value);
-
   const dispatch = useDispatch();
   const cash = useSelector((state) => state.cash.value);
+
   const selectedCoinPrice = coinData?.find((coin) => {
     return coin.id === selectedCoin;
   })?.price;
@@ -58,7 +58,7 @@ export const BuyForm = ({ coinData }) => {
 
   return (
     <div className="text-2xl font-bold flex flex-col gap-4 divide-y-8">
-      {cash === 0 ? (
+      {cash <= 0 ? (
         <div>
           sorry, no money, can't open new positions, close some positions to get
           some cash, or wait

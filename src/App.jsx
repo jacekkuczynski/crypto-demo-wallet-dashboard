@@ -6,7 +6,6 @@ import { History } from "./pages/History/History";
 import { Buy } from "./pages/Buy/Buy";
 import { Positions } from "./pages/Positions/Positions";
 import { Faq } from "./pages/Faq/Faq";
-import { Support } from "./pages/Support/Support";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { useFetchCoinsData } from "./api/useFetchCoinsData";
 import { Toaster } from "react-hot-toast";
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux";
 import { useSetUserState } from "./hooks/useSetUserState";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
+import { useFirebase } from "./hooks/useFirebase";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
@@ -21,10 +21,10 @@ const App = () => {
   const isUser = useSelector((state) => state.user.value);
   useSetUserState();
   useHandleLastTransaction();
+  useFirebase();
   useEffect(() => {
     if (data) {
       setCoinData(data);
-      // console.log(data);
     }
   }, [data]);
 
@@ -41,7 +41,6 @@ const App = () => {
           <Route path="history" element={<History />} />
           <Route path="positions" element={<Positions />} />
           <Route path="faq" element={<Faq />} />
-          <Route path="support" element={<Support />} />
           <Route path="buy" element={<Buy coinData={coinData} />} />
         </Routes>
       </div>

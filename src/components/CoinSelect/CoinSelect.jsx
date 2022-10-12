@@ -38,6 +38,8 @@ export const CoinSelect = ({ coinData }) => {
           isClearable
           onChange={handleChange}
           options={coinSelectOptions}
+          menuPortalTarget={document.body}
+          menuPosition={"fixed"}
         />
         <button
           onClick={handleSubmit}
