@@ -18,7 +18,7 @@ import { useFirebase } from "./hooks/useFirebase";
 const App = () => {
   const [coinData, setCoinData] = useState(null);
   const { data } = useFetchCoinsData();
-  const isUser = useSelector((state) => state.user.value);
+  const isUser = useSelector((state) => state.user?.value);
   useSetUserState();
   useHandleLastTransaction();
   useFirebase();
@@ -31,10 +31,10 @@ const App = () => {
   return !isUser ? (
     <LoginPage />
   ) : (
-    <div className="flex min-h-screen min-w-screen bg-neutral-50  ">
+    <div className="flex min-h-screen min-w-screen bg-neutral-50">
       <Toaster position="bottom-right" />
       <Sidebar />
-      <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50 ">
+      <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50">
         <Routes>
           <Route path="/" element={<Homepage coinData={coinData} />} />
           <Route path="market" element={<Market coinData={coinData} />} />

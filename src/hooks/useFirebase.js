@@ -26,7 +26,7 @@ export const useFirebase = () => {
 
   const selectedCoins = useSelector((state) => state.selectedCoins.value);
   const dispatch = useDispatch();
-  const userID = useSelector((state) => state.user.value?.id);
+  const userID = useSelector((state) => state.user?.value);
   const userCash = useSelector((state) => state.cash.value);
   const isDatabaseChecked = useSelector((state) => state.isDbChecked.value);
 
