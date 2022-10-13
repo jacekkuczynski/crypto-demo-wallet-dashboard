@@ -11,7 +11,11 @@ const positionsSlice = createSlice({
         state.value = [...state.value, action.payload];
       }
     },
-    removePosition: (state, action) => {},
+    removePosition: (state, action) => {
+      state.value = state.value.filter((el) => {
+        return el !== action.payload;
+      });
+    },
   },
 });
 

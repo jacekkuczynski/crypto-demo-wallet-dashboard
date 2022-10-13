@@ -21,37 +21,46 @@ export const useHandleLastTransaction = () => {
   useEffect(() => {
     if (lastTranasctionData) {
       setData(lastTranasctionData);
-      console.log(data);
     }
   }, [lastTranasctionData]);
 
   //handle toast after transaction
   useEffect(() => {
     if (data) {
-      data.side === "buy"
-        ? toast.success(
-            `Congratulations! You just bought ${
-              data.amount
-            } of ${capitalizeFirstLetter(data.id)} for $${
-              data.cost
-            } (current coin price: $${data.price})`,
-            { duration: 5000, icon: "🎉" }
-          )
-        : toast.success(
-            `Congratulations! You just sold ${
-              data.amount
-            } of ${capitalizeFirstLetter(data.id)} for $${
-              data.cost
-            } (current coin price: $${data.price})`,
-            { duration: 5000, icon: "🎉" }
-          );
+      if (data.side === "buy") {
+        toast.success(
+          `Congratulations! You just bought ${
+            data.amount
+          } of ${capitalizeFirstLetter(data.id)} for $${
+            data.cost
+          } (current coin price: $${data.price})`,
+          { duration: 5000, icon: "🎉" }
+        );
+      } else if (data.side === "sell") {
+        toast.success(
+          `Congratulations! You just sold ${
+            data.amount
+          } of ${capitalizeFirstLetter(data.id)} for $${
+            data.cost
+          } (current coin price: $${data.price})`,
+          { duration: 5000, icon: "🎉" }
+        );
+      } else {
+        toast.success(
+          `Congratulations! You just sold ${
+            data.amount
+          } of ${capitalizeFirstLetter(data.id)} for $${
+            data.cost
+          } (current coin price: $${data.price})`,
+          { duration: 5000, icon: "🎉" }
+        );
+      }
     }
   }, [data]);
   //handle cash state after transaction
   useEffect(() => {
     if (data) {
       let currentCash = cash - data.cost;
-      console.log(currentCash);
       dispatch(setCash(currentCash));
     }
   }, [data]);

@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/" element={<Homepage coinData={coinData} />} />
           <Route path="market" element={<Market coinData={coinData} />} />
           <Route path="history" element={<History />} />
-          <Route path="positions" element={<Positions />} />
+          <Route path="positions" element={<Positions coinData={coinData} />} />
           <Route path="faq" element={<Faq />} />
           <Route path="buy" element={<Buy coinData={coinData} />} />
         </Routes>

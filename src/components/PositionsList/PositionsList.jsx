@@ -1,25 +1,45 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
-export const PositionsList = () => {
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import { setLastTransaction } from "../../features/lastTransaction/lastTransactionSlice";
+
+export const PositionsList = ({ coinData }) => {
   const [positionsData, setpositionsData] = useState(null);
   const positions = useSelector((state) => state.positions.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (positions) setpositionsData(positions);
   }, [positions]);
 
+  const currentPrice = (coinId) => {
+    return coinData?.find((el) => {
+      return el.id === coinId;
+    }).price;
+  };
+
+  const handleClosePos = (position) => {
+    const pos = { ...position };
+    const posSide = pos.side;
+    pos.side = posSide.concat("isClosing");
+
+    // dispatch(setLastTransaction(pos));
+    console.log(pos);
+    console.log("here");
+  };
+
   return (
     <div className="overflow-x-scroll">
-      <table className="min-w-full text-center table-auto">
+      <table className="min-w-full text-left">
         <thead>
           <tr>
             <th>Coin</th>
             <th>Side</th>
             <th>Price</th>
-            <th>Amount</th>
+            <th>Current Price</th>
             <th>Cost</th>
-            <th>Date</th>
+            <th className="text-center">Close Position</th>
           </tr>
         </thead>
         {/* if index % one color : second color */}
@@ -38,9 +58,18 @@ export const PositionsList = () => {
                   </td>
                 )}
                 <td>{position.price}</td>
-                <td>~{position.amount.toFixed(2)}</td>
+                <td>{currentPrice(position.id)}</td>
                 <td>{position.cost}</td>
-                <td>{position.date.slice(4, -12)}</td>
+                <td
+                  onClick={() => {
+                    handleClosePos(position);
+                  }}
+                >
+                  <XMarkIcon
+                    className="block m-auto text-center text-neutral-800 hover:text-red-600 transition ease-in-out duration-200 "
+                    width="42px"
+                  />
+                </td>
               </tr>
             </tbody>
           );

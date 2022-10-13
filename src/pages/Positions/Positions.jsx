@@ -1,9 +1,9 @@
 import { PositionsList } from "../../components/PositionsList/PositionsList";
 
-export const Positions = () => {
+export const Positions = ({ coinData }) => {
   return (
     <div>
-      <PositionsList />
+      <PositionsList coinData={coinData} />
     </div>
   );
 };
