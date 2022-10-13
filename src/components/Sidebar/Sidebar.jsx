@@ -52,13 +52,13 @@ export const Sidebar = () => {
             );
           })}
           <LogoutBtn />
+          <UsersCash />
         </motion.div>
       }
       {/* // desktop */}
       <div className="container hidden w-60 md:block bg-neutral-100">
-        <div className="flex flex-col w-full justify-between h-full ">
+        <div className="flex flex-col w-full  h-full ">
           <div>
-            {" "}
             {sidebarData.map((link) => {
               return (
                 <NavLink
@@ -81,7 +81,7 @@ export const Sidebar = () => {
               <LogoutBtn />
             </div>
           </div>
-          <div className="mb-16">
+          <div className="my-16">
             <UsersCash />
           </div>
         </div>

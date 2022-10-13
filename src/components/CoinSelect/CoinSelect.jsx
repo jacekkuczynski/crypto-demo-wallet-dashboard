@@ -31,7 +31,7 @@ export const CoinSelect = ({ coinData }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-around border drop-shadow-md p-5 w-full h-40 bg-neutral-50">
+      <div className="flex flex-col justify-around border drop-shadow-md m-2 p-5 w-full h-40 bg-neutral-50">
         <CreatableSelect
           ref={ref}
           isMulti
@@ -39,7 +39,6 @@ export const CoinSelect = ({ coinData }) => {
           onChange={handleChange}
           options={coinSelectOptions}
           menuPortalTarget={document.body}
-          menuPosition={"fixed"}
         />
         <button
           onClick={handleSubmit}

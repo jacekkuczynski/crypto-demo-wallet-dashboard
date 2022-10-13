@@ -34,7 +34,7 @@ const App = () => {
     <div className="flex min-h-screen min-w-screen bg-neutral-50  ">
       <Toaster position="bottom-right" />
       <Sidebar />
-      <div className="w-full md:ml-24 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50 ">
+      <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50 ">
         <Routes>
           <Route path="/" element={<Homepage coinData={coinData} />} />
           <Route path="market" element={<Market coinData={coinData} />} />

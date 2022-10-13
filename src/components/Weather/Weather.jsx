@@ -1,26 +1,23 @@
 import { useFetchWeatherData } from "../../api/useFetchWeatherData";
-import { useEffect } from "react";
 
 export const Weather = () => {
   const { data: weatherData } = useFetchWeatherData();
 
   if (weatherData) {
     return (
-      <div className="w-1/2  p-5 shadow-md border bg-sky-50">
-        <div className="text-2xl font-bold text-neutral-700 py-2">
-          Perfect weather for investments!
-        </div>
-        <div className="">
+      <div className="flex flex-col w-fit max-w-sm px-12 gap-1 items-center justify-around p-5 shadow-md bg-sky-50">
+        <div className="font-semibold text-2xl text-neutral-800">
           <p>{weatherData.temp}°C</p>
-          <p>{weatherData.weather}</p>
-          <p>{weatherData.description}</p>
-          <div className="shadow-sm w-fit m-2 bg-white">
-            <img
-              src={weatherData.image}
-              alt={weatherData.weather + " image"}
-            ></img>
-          </div>
         </div>
+        <p>{weatherData.weather}</p>
+        <div className="shadow-lg w-fit p-1 bg-white rounded-full">
+          <img
+            className="drop-shadow-lg"
+            src={weatherData.image}
+            alt={weatherData.weather + " image"}
+          ></img>
+        </div>
+        <p>{weatherData.description}</p>
       </div>
     );
   } else {

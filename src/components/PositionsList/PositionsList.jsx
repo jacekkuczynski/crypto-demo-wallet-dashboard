@@ -26,20 +26,22 @@ export const PositionsList = () => {
         {positionsData?.map((position, i) => {
           return (
             <tbody key={i}>
-              <td>{capitalizeFirstLetter(position.id)}</td>
-              {position.side === "buy" ? (
-                <td className="text-green-800 font-bold">
-                  {position.side.toUpperCase()}
-                </td>
-              ) : (
-                <td className="text-red-800 font-bold">
-                  {position.side.toUpperCase()}
-                </td>
-              )}
-              <td>{position.price}</td>
-              <td>~{position.amount.toFixed(2)}</td>
-              <td>{position.cost}</td>
-              <td>{position.date.slice(4, -12)}</td>
+              <tr>
+                <td>{capitalizeFirstLetter(position.id)}</td>
+                {position.side === "buy" ? (
+                  <td className="text-green-800 font-bold">
+                    {position.side.toUpperCase()}
+                  </td>
+                ) : (
+                  <td className="text-red-800 font-bold">
+                    {position.side.toUpperCase()}
+                  </td>
+                )}
+                <td>{position.price}</td>
+                <td>~{position.amount.toFixed(2)}</td>
+                <td>{position.cost}</td>
+                <td>{position.date.slice(4, -12)}</td>
+              </tr>
             </tbody>
           );
         })}

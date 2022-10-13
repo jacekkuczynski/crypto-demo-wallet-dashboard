@@ -4,7 +4,7 @@ import { Weather } from "../../components/Weather/Weather";
 
 export const Homepage = ({ coinData }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 items-center">
       <Greetings />
       <ClocksBoard />
       <Weather />

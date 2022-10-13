@@ -17,7 +17,6 @@ export const BuyForm = ({ coinData }) => {
   const selectedCoinPrice = coinData?.find((coin) => {
     return coin.id === selectedCoin;
   })?.price;
-
   // //cost of transaction
   useEffect(() => {
     if (cash && coinData && selectedCoin) {
@@ -25,7 +24,6 @@ export const BuyForm = ({ coinData }) => {
       setCost(transactionCost);
     }
   }, [cash, coinData, selectedCoin, selectedCoinPrice, rangeValue]);
-
   //coins amount
   useEffect(() => {
     if (cost && selectedCoinPrice) {
@@ -33,8 +31,6 @@ export const BuyForm = ({ coinData }) => {
       setAmount(coinsAmount);
     }
   }, [cost, selectedCoinPrice]);
-
-  //initial instead of 0
 
   const handleSubmit = (event) => {
     const initialValue = 0;
@@ -57,7 +53,7 @@ export const BuyForm = ({ coinData }) => {
   };
 
   return (
-    <div className="text-2xl font-bold flex flex-col gap-4 divide-y-8">
+    <div className="text-2xl font-bold flex flex-col gap-4 w-11/12 divide-y-8">
       {cash <= 0 ? (
         <div>
           sorry, no money, can't open new positions, close some positions to get

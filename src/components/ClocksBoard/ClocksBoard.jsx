@@ -5,9 +5,9 @@ export const ClocksBoard = () => {
   const times = useGetTimes();
 
   return (
-    <div className="flex flex-col w-1/2">
-      <div className="flex flex-col items-center justify-center">
-        <p>Local Time:</p>
+    <div className="grid grid-cols-2 gap-16 lg:grid-cols-4 ">
+      <div className="text-center">
+        <p className="p-1">Local Time</p>
         <SingleClock initialVal={new Date()} />
       </div>
       {times.map((city) => {
