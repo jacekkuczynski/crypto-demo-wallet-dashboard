@@ -53,7 +53,7 @@ export const BuyForm = ({ coinData }) => {
   };
 
   return (
-    <div className="text-2xl font-bold flex flex-col gap-4 w-11/12 divide-y-8">
+    <div className="text-2xl font-bold flex flex-col items-center text-center gap-4 w-11/12 divide-y-8">
       {cash <= 0 ? (
         <div>
           sorry, no money, can't open new positions, close some positions to get
