@@ -19,9 +19,9 @@ const App = () => {
   const [coinData, setCoinData] = useState(null);
   const { data } = useFetchCoinsData();
   const isUser = useSelector((state) => state.user?.value);
+  useFirebase();
   useSetUserState();
   useHandleLastTransaction();
-  useFirebase();
   useEffect(() => {
     if (data) {
       setCoinData(data);

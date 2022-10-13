@@ -9,8 +9,8 @@ import historyReducer from "../features/history/historySlice";
 
 export default configureStore({
   reducer: {
-    selectedCoins: selectedCoinsReducer,
     user: userReducer,
+    selectedCoins: selectedCoinsReducer,
     cash: cashReducer,
     positions: positionsReducer,
     lastTransaction: lastTransactionReducer,

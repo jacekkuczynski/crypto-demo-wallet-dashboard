@@ -3,14 +3,10 @@ import { auth } from "./initialize";
 
 export const loginAnonymously = () => {
   signInAnonymously(auth)
-    .then(() => {
-      console.log("signed in");
-      console.log(auth.currentUser.uid);
-    })
+    .then(() => {})
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
+      console.log(error.message);
+      console.log(error.code);
       // ...
     });
 };
