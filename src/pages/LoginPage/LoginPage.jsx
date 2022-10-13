@@ -1,6 +1,7 @@
 import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { SignUpForm } from "../../components/SignUpForm/SignUpForm";
 import { useState } from "react";
+import { LoginAnonymouslyBtn } from "../../components/LoginAnonymouslyBtn/LoginAnonymouslyBtn";
 
 export const LoginPage = () => {
   const signUpBtn = (
@@ -42,6 +43,7 @@ export const LoginPage = () => {
           <div className="flex  justify-center"></div>
         </div>
       </div>
+      <LoginAnonymouslyBtn />
     </>
   );
 };

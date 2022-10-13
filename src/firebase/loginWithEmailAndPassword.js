@@ -4,9 +4,7 @@ import { auth } from "./initialize";
 export const loginWithEmailAndPassword = async (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in
-      // const user = userCredential.user;
-      // console.log(user);
+      console.log(auth.currentUser.uid);
     })
     .catch((error) => {
       const errorCode = error.code;

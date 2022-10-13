@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/initialize";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/userSlice";
+import isDbChecked from "../features/isDbChecked/isDbChecked";
 
 export const useSetUserState = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const useSetUserState = () => {
         dispatch(setUser({ email: user.email, id: user.uid }));
       } else {
         dispatch(setUser(null));
+        dispatch(isDbChecked(false));
       }
     });
   }, []);

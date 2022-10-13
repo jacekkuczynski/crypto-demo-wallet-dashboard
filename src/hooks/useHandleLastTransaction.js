@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -53,7 +54,7 @@ export const useHandleLastTransaction = () => {
       console.log(currentCash);
       dispatch(setCash(currentCash));
     }
-  }, [data, dispatch]);
+  }, [data]);
   //handle transactions state
   useEffect(() => {
     if (data) dispatch(addPosition(data));
