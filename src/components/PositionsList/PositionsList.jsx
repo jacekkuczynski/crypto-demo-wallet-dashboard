@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { setLastTransaction } from "../../features/lastTransaction/lastTransactionSlice";
+import { current } from "@reduxjs/toolkit";
 
 export const PositionsList = ({ coinData }) => {
   const [positionsData, setpositionsData] = useState(null);
@@ -21,12 +22,13 @@ export const PositionsList = ({ coinData }) => {
 
   const handleClosePos = (position) => {
     const pos = { ...position };
-    const posSide = pos.side;
-    pos.side = posSide.concat("isClosing");
-
-    // dispatch(setLastTransaction(pos));
+    const currentCost = currentPrice(pos.id) * pos.amount;
+    // console.log(currentPrice(pos.id));
+    pos.isClosing = true;
+    pos.cost = currentCost;
+    //
+    dispatch(setLastTransaction(pos));
     console.log(pos);
-    console.log("here");
   };
 
   return (

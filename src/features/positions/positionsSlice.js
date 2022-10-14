@@ -13,7 +13,7 @@ const positionsSlice = createSlice({
     },
     removePosition: (state, action) => {
       state.value = state.value.filter((el) => {
-        return el !== action.payload;
+        return el.transactionID !== action.payload.transactionID;
       });
     },
   },

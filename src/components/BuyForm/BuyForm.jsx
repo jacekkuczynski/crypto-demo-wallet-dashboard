@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { computeCoinAmount, computeTransCost } from "../../helpers/helpers";
 import { setLastTransaction } from "../../features/lastTransaction/lastTransactionSlice";
 import { getCurrentDate } from "../../helpers/helpers";
+import { v4 as uuidv4 } from "uuid";
 
 export const BuyForm = ({ coinData }) => {
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -42,6 +43,7 @@ export const BuyForm = ({ coinData }) => {
       amount: amount,
       cost: cost,
       date: getCurrentDate(),
+      transactionID: uuidv4(),
     };
     if (rangeValue > initialValue) {
       dispatch(setLastTransaction(transactionData));
