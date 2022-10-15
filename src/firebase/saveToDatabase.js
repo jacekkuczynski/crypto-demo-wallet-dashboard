@@ -12,3 +12,15 @@ export const saveSelectedCoinsToDatabase = (userId, selectedCoins) => {
     selectedCoins,
   });
 };
+
+export const savePositionsToDatabase = (userId, positions) => {
+  set(ref(db, "users/" + userId + "/positions"), {
+    positions,
+  });
+};
+
+export const saveHistoryToDatabase = (userId, history) => {
+  set(ref(db, "users/" + userId + "/history"), {
+    history,
+  });
+};

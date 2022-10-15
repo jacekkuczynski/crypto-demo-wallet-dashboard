@@ -12,7 +12,7 @@ export const SelectedCoins = ({ coinData }) => {
   return (
     <div className="my-2 overflow-auto w-11/12 h-96 drop-shadow-lg p-5 bg-neutral-50">
       {selectedCoins.length > 0 ? (
-        <h2 className="text-2xl text-center mb-2 font-bold	text-neutral-700">
+        <h2 className="text-2xl text-center mb-2 font-bold text-neutral-700">
           Coin Watchlist
         </h2>
       ) : (

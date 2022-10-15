@@ -9,12 +9,12 @@ import isDbChecked from "../features/isDbChecked/isDbChecked";
 export const useSetUserState = () => {
   const dispatch = useDispatch();
 
-  //user.isAnonymous = false
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user?.isAnonymous === false) {
         dispatch(setUser(user.uid));
+      } else if (user?.isAnonymous === true) {
+        dispatch(setUser("anonymous"));
       } else {
         dispatch(setUser(null));
         dispatch(isDbChecked(false));
@@ -22,5 +22,3 @@ export const useSetUserState = () => {
     });
   }, []);
 };
-
-// https://firebase.google.com/docs/reference/js/v8/firebase.User#isanonymous
