@@ -4,6 +4,9 @@ const historySlice = createSlice({
   name: "history",
   initialState: { value: [] },
   reducers: {
+    loadHistory: (state, action) => {
+      state.value = action.payload;
+    },
     addToHistory: (state, action) => {
       if (state.value.length < 1) {
         state.value = [action.payload];
@@ -14,5 +17,5 @@ const historySlice = createSlice({
   },
 });
 
-export const { addToHistory } = historySlice.actions;
+export const { loadHistory, addToHistory } = historySlice.actions;
 export default historySlice.reducer;

@@ -4,6 +4,9 @@ export const selectedCoinsSlice = createSlice({
   name: "selectedCoins",
   initialState: { value: [] },
   reducers: {
+    loadSelectedCoins: (state, action) => {
+      state.value = action.payload;
+    },
     addSelectedCoins: (state, action) => {
       state.value = [...state.value, action.payload].flat();
     },
@@ -15,6 +18,6 @@ export const selectedCoinsSlice = createSlice({
   },
 });
 
-export const { addSelectedCoins, removeSelectedCoins } =
+export const { loadSelectedCoins, addSelectedCoins, removeSelectedCoins } =
   selectedCoinsSlice.actions;
 export default selectedCoinsSlice.reducer;

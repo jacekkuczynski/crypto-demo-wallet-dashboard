@@ -4,6 +4,9 @@ const positionsSlice = createSlice({
   name: "positions",
   initialState: { value: [] },
   reducers: {
+    loadPositions: (state, action) => {
+      state.value = action.payload;
+    },
     addPosition: (state, action) => {
       if (state.value.length < 1) {
         state.value = [action.payload];
@@ -19,5 +22,6 @@ const positionsSlice = createSlice({
   },
 });
 
-export const { addPosition, removePosition } = positionsSlice.actions;
+export const { loadPositions, addPosition, removePosition } =
+  positionsSlice.actions;
 export default positionsSlice.reducer;

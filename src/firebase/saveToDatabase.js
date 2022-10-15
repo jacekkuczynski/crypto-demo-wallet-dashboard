@@ -3,24 +3,24 @@ import { db } from "./initialize";
 
 export const saveCashToDatabase = (userId, cash) => {
   set(ref(db, "users/" + userId + "/cash"), {
-    cash,
+    value: cash,
   });
 };
 
 export const saveSelectedCoinsToDatabase = (userId, selectedCoins) => {
   set(ref(db, "users/" + userId + "/selectedCoins"), {
-    selectedCoins,
+    value: selectedCoins,
   });
 };
 
 export const savePositionsToDatabase = (userId, positions) => {
   set(ref(db, "users/" + userId + "/positions"), {
-    positions,
+    value: positions,
   });
 };
 
 export const saveHistoryToDatabase = (userId, history) => {
   set(ref(db, "users/" + userId + "/history"), {
-    history,
+    value: history,
   });
 };
