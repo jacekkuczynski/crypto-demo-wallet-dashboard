@@ -36,6 +36,10 @@ export const useFirebase = () => {
   const { data: databaseUserSnapshot } = useReadFromDatabase("");
 
   const dispatch = useDispatch();
+  const cashInitialValue = 10000;
+  const positionsInitialValue = [];
+  const selectedCoinsInitialValue = [];
+  const historyInitialValue = [];
 
   //check if userSnapshot
   useEffect(() => {
@@ -47,25 +51,23 @@ export const useFirebase = () => {
   useEffect(() => {
     if (userSnapshot && isDatabaseCheckedStore === false) {
       if (userSnapshot.cash?.value) {
-        console.log(userSnapshot.cash.value);
         dispatch(setCash(userSnapshot.cash.value));
       }
       if (userSnapshot.positions?.value) {
-        console.log(userSnapshot.positions.value);
         dispatch(loadPositions(userSnapshot.positions.value));
       }
       if (userSnapshot.selectedCoins?.value) {
-        console.log(userSnapshot.selectedCoins.value);
         dispatch(loadSelectedCoins(userSnapshot.selectedCoins.value));
       }
       if (userSnapshot.history?.value) {
-        console.log(userSnapshot.history.value);
         dispatch(loadHistory(userSnapshot.history.value));
-      } else if (userID) {
+      }
+      if (userID) {
         dispatch(setIsDbChecked(true));
+        setUserSnapshot(null);
       }
     }
-  }, [userSnapshot, isDatabaseCheckedStore, dispatch]);
+  }, [userID, userSnapshot, isDatabaseCheckedStore, dispatch]);
   //subscribe to state change and save to database
   useEffect(() => {
     if (userID && isDatabaseCheckedStore === true) {

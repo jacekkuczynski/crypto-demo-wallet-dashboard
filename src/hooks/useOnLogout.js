@@ -24,7 +24,6 @@ export const useOnLogout = () => {
       dispatch(resetPositions());
       dispatch(resetSelectedCoins());
       dispatch(resetLastTransaction());
-    } else {
     }
   }, [userID]);
 };
