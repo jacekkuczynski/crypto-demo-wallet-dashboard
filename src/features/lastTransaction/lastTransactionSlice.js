@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: null };
-
 export const lastTransactionSlice = createSlice({
   name: "lastTransaction",
-  initialState: initialState,
+  initialState: { value: null },
   reducers: {
     setLastTransaction: (state, action) => {
       state.value = action.payload;
     },
+    resetLastTransaction: (state) => {
+      state.value = null;
+    },
   },
-  resetLastTransaction: (state) => (state.value = initialState),
 });
 
-export const { setLastTransaction, resetLastTransaction } =
+export const { resetLastTransaction, setLastTransaction } =
   lastTransactionSlice.actions;
 export default lastTransactionSlice.reducer;

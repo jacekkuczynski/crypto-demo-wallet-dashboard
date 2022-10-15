@@ -19,8 +19,10 @@ const positionsSlice = createSlice({
         return el.transactionID !== action.payload.transactionID;
       });
     },
+    resetPositions: (state) => {
+      state.value = null;
+    },
   },
-  resetPositions: (state) => (state.value = []),
 });
 
 export const { resetPositions, loadPositions, addPosition, removePosition } =

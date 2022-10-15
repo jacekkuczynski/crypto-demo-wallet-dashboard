@@ -6,10 +6,6 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/userSlice";
 import isDbChecked from "../features/isDbChecked/isDbChecked";
 import { resetCash } from "../features/cash/cashSlice";
-import { resetHistory } from "../features/history/historySlice";
-import { resetLastTransaction } from "../features/lastTransaction/lastTransactionSlice";
-import { resetSelectedCoins } from "../features/selectedCoins/selectedCoinsSlice";
-import { resetPositions } from "../features/positions/positionsSlice";
 
 export const useSetUserState = () => {
   const dispatch = useDispatch();
@@ -22,13 +18,6 @@ export const useSetUserState = () => {
         dispatch(setUser("anonymous"));
       } else {
         dispatch(setUser(null));
-        dispatch(isDbChecked(false));
-
-        dispatch(resetCash());
-        dispatch(resetHistory());
-        dispatch(resetLastTransaction());
-        dispatch(resetSelectedCoins());
-        dispatch(resetPositions());
       }
     });
   }, []);

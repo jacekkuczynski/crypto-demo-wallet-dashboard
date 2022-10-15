@@ -14,6 +14,7 @@ import { useSetUserState } from "./hooks/useSetUserState";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
 import { useFirebase } from "./hooks/useFirebase";
+import { useOnLogout } from "./hooks/useOnLogout";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
@@ -22,6 +23,7 @@ const App = () => {
   useFirebase();
   useSetUserState();
   useHandleLastTransaction();
+  // useOnLogout();
   useEffect(() => {
     if (data) {
       setCoinData(data);
