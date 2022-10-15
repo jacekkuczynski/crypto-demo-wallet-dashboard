@@ -15,7 +15,8 @@ const historySlice = createSlice({
       }
     },
   },
+  resetHistory: (state) => (state.value = []),
 });
 
-export const { loadHistory, addToHistory } = historySlice.actions;
+export const { resetHistory, loadHistory, addToHistory } = historySlice.actions;
 export default historySlice.reducer;

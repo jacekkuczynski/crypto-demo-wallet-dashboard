@@ -20,8 +20,9 @@ const positionsSlice = createSlice({
       });
     },
   },
+  resetPositions: (state) => (state.value = []),
 });
 
-export const { loadPositions, addPosition, removePosition } =
+export const { resetPositions, loadPositions, addPosition, removePosition } =
   positionsSlice.actions;
 export default positionsSlice.reducer;

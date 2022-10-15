@@ -37,6 +37,9 @@ export const useFirebase = () => {
 
   const dispatch = useDispatch();
   const cashInitialValue = 10000;
+  const positionsInitialValue = [];
+  const selectedCoinsInitialValue = [];
+  const historyInitialValue = [];
 
   //check if userSnapshot
   useEffect(() => {
@@ -47,19 +50,31 @@ export const useFirebase = () => {
   //set data from database to app store
   useEffect(() => {
     if (userSnapshot && isDatabaseCheckedStore === false) {
-      if (userSnapshot.cash?.value) {
+      if (
+        userSnapshot.cash?.value &&
+        userSnapshot.cash?.value !== cashInitialValue
+      ) {
         console.log(userSnapshot.cash.value);
         dispatch(setCash(userSnapshot.cash.value));
       }
-      if (userSnapshot.positions?.value) {
+      if (
+        userSnapshot.positions?.value &&
+        userSnapshot.positions?.value !== positionsInitialValue
+      ) {
         console.log(userSnapshot.positions.value);
         dispatch(loadPositions(userSnapshot.positions.value));
       }
-      if (userSnapshot.selectedCoins?.value) {
+      if (
+        userSnapshot.selectedCoins?.value &&
+        userSnapshot.selectedCoins?.value !== selectedCoinsInitialValue
+      ) {
         console.log(userSnapshot.selectedCoins.value);
         dispatch(loadSelectedCoins(userSnapshot.selectedCoins.value));
       }
-      if (userSnapshot.history?.value) {
+      if (
+        userSnapshot.history?.value &&
+        userSnapshot.history?.value !== historyInitialValue
+      ) {
         console.log(userSnapshot.history.value);
         dispatch(loadHistory(userSnapshot.selectedCoins.value));
       }
