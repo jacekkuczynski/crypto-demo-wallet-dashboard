@@ -23,7 +23,7 @@ const App = () => {
   useFirebase();
   useSetUserState();
   useHandleLastTransaction();
-  // useOnLogout();
+  useOnLogout(isUser);
   useEffect(() => {
     if (data) {
       setCoinData(data);

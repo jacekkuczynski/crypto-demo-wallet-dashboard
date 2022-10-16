@@ -8,7 +8,7 @@ const cashSlice = createSlice({
       state.value = action.payload;
     },
     resetCash: (state) => {
-      state.value = null;
+      state.value = 10000;
     },
   },
 });

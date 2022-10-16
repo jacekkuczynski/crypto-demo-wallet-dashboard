@@ -15,7 +15,7 @@ const historySlice = createSlice({
       }
     },
     resetHistory: (state) => {
-      state.value = null;
+      state.value = [];
     },
   },
 });

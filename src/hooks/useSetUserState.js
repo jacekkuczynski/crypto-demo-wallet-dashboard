@@ -17,7 +17,6 @@ export const useSetUserState = () => {
         dispatch(setUser("anonymous"));
       } else {
         dispatch(setUser(null));
-        dispatch(setIsDbChecked(false));
       }
     });
   }, []);

@@ -7,14 +7,9 @@ import { resetLastTransaction } from "../features/lastTransaction/lastTransactio
 import { resetSelectedCoins } from "../features/selectedCoins/selectedCoinsSlice";
 import { resetPositions } from "../features/positions/positionsSlice";
 
-export const useOnLogout = () => {
-  const userID = useSelector((state) => state.user.value);
-
+export const useOnLogout = (userID) => {
+  // const userID = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(userID);
-  }, [userID]);
 
   useEffect(() => {
     if (!userID) {

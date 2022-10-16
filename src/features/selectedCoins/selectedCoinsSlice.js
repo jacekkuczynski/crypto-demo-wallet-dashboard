@@ -16,7 +16,7 @@ export const selectedCoinsSlice = createSlice({
       });
     },
     resetSelectedCoins: (state) => {
-      state.value = null;
+      state.value = [];
     },
   },
 });

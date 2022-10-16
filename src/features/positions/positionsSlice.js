@@ -20,7 +20,7 @@ const positionsSlice = createSlice({
       });
     },
     resetPositions: (state) => {
-      state.value = null;
+      state.value = [];
     },
   },
 });
