@@ -15,12 +15,15 @@ export const useReadFromDatabase = (userID) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setData(snapshot.val());
-          console.log(snapshot.val());
         }
       })
       .catch((error) => {
         setError(error);
       });
   }, [userID]);
+
+  useEffect(() => {
+    console.log(data, "data");
+  }, [data, userID]);
   return { data };
 };

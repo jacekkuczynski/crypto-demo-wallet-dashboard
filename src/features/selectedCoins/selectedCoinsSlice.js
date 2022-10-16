@@ -5,6 +5,7 @@ export const selectedCoinsSlice = createSlice({
   initialState: { value: [] },
   reducers: {
     loadSelectedCoins: (state, action) => {
+      console.log(action.payload, "action payload");
       state.value = action.payload;
     },
     addSelectedCoins: (state, action) => {

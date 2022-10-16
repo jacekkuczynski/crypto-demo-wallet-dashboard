@@ -1,88 +1,89 @@
-import { useState, useEffect } from "react";
+//check if is user snapshot
+//if yes load and set snapshot to app state
+//set is dbchecked to true
+
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
 import { useReadFromDatabase } from "./useReadFromDatabase";
+import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
 import { setCash } from "../features/cash/cashSlice";
+import { loadSelectedCoins } from "../features/selectedCoins/selectedCoinsSlice";
+import { loadPositions } from "../features/positions/positionsSlice";
+import { loadHistory } from "../features/history/historySlice";
 import {
   saveCashToDatabase,
   saveSelectedCoinsToDatabase,
 } from "../firebase/saveToDatabase";
 
-export const useFirebase = () => {
-  const [userID, setUserID] = useState(null);
+//subscribe to changes and save data to firebase
 
-  const [snapshotCash, setSnapshotCash] = useState(null);
-  const [snapshotSelectedCoin, setSnapshotSelectedCoin] = useState(null);
-  const [snapshotPositions, setSnapshotPositions] = useState(null);
-  const [snapshotHistory, setSnapshotHistory] = useState(null);
-
-  const userIDStore = useSelector((state) => state.user.value);
+export const useFirebase = (userID) => {
+  let { data: userSnapshot } = useReadFromDatabase(userID);
   const isDbChecked = useSelector((state) => state.isDbChecked.value);
   const cashStore = useSelector((state) => state.cash.value);
   const selectedCoinsStore = useSelector((state) => state.selectedCoins.value);
-  let { data: userSnapshot } = useReadFromDatabase(userID);
 
   const dispatch = useDispatch();
 
-  //set user
+  //   const ifUserSnapshotSetIsDbChecked = () => {
+  //     if (!userSnapshot && userID) {
+  //       dispatch(setIsDbChecked(true));
+  //     }
+  //   };
   useEffect(() => {
-    setUserID(userIDStore);
-  }, [userIDStore]);
+    console.log(userSnapshot, "userSnapshot");
+  }, [userSnapshot]);
 
   const cashInitialValue = 10000;
   const selectedCoinsInitialValue = [];
   const positionsInitialValue = [];
   const historyInitialValue = [];
 
-  //check if if user snapshot, set state
+  //load from database
   useEffect(() => {
-    if (userSnapshot) {
-      setSnapshotCash(userSnapshot.cash?.value);
-      setSnapshotSelectedCoin(userSnapshot.selectedCoins?.value);
-      setSnapshotPositions(userSnapshot.positions?.value);
-      setSnapshotHistory(userSnapshot.history?.value);
-    } else {
-      dispatch(setIsDbChecked(true));
-      // setSnapshotCash(null);
-      // setSnapshotSelectedCoin(null);
-      // setSnapshotPositions(null);
-      // setSnapshotHistory(null);
-    }
-  }, [userSnapshot, userID]);
-
-  useEffect(() => {
-    console.log(userID, "userID");
-    console.log(snapshotCash, "snapshotCash");
-    console.log(snapshotSelectedCoin, "snapshotSelectedCoin");
-    console.log(snapshotPositions, "snapshotPositions");
-    console.log(snapshotHistory, "snapshotHistory");
-  }, [
-    userID,
-    snapshotCash,
-    snapshotSelectedCoin,
-    snapshotPositions,
-    snapshotHistory,
-  ]);
-
-  //   load data from snapshot
-  useEffect(() => {
-    if (isDbChecked === false) {
-      if (snapshotCash && snapshotCash !== cashInitialValue) {
-        dispatch(setCash(snapshotCash));
-        setSnapshotCash(null);
+    if (isDbChecked === false && userSnapshot && userID) {
+      console.log("here");
+      if (
+        userSnapshot.cash?.value &&
+        userSnapshot.cash?.value !== cashInitialValue
+      ) {
+        dispatch(setCash(userSnapshot.cash?.value));
+      }
+      if (
+        userSnapshot?.selectedCoins &&
+        userSnapshot.selectedCoins?.value !== selectedCoinsInitialValue
+      ) {
+        dispatch(loadSelectedCoins(userSnapshot.selectedCoins?.value));
+      }
+      if (
+        userSnapshot.positions?.value &&
+        userSnapshot.positions?.value !== positionsInitialValue
+      ) {
+        dispatch(loadPositions(userSnapshot.positions?.value));
+      }
+      if (
+        userSnapshot.history?.value &&
+        userSnapshot.history?.value !== historyInitialValue
+      ) {
+        dispatch(loadHistory(userSnapshot.history?.value));
       }
     }
-  }, [userID, userSnapshot, isDbChecked, snapshotCash, dispatch]);
+  }, [userID, userSnapshot, isDbChecked]);
 
-  //subscribe to state changes and save to database
-  useEffect(() => {
-    if (userID && isDbChecked === true) {
-      if (cashStore !== cashInitialValue) {
-        saveCashToDatabase(userID, cashStore);
-      }
-      if (selectedCoinsStore !== selectedCoinsInitialValue) {
-        saveSelectedCoinsToDatabase(userID, selectedCoinsStore);
-      }
-    }
-  }, [userID, isDbChecked, cashStore, selectedCoinsStore]);
+  //   const subscribeToStateChangeAndSaveToDatabase = () => {
+  //     if (userID && isDbChecked === true) {
+  //       if (cashStore !== cashInitialValue) {
+  //         console.log("here");
+  //         saveCashToDatabase(userID, cashStore);
+  //       }
+  //       if (selectedCoinsStore !== selectedCoinsInitialValue) {
+  //         saveSelectedCoinsToDatabase(userID, selectedCoinsStore);
+  //       }
+  //     }
+  //   };
+
+  //   useEffect(() => {
+  //     // ifUserSnapshotSetIsDbChecked();
+  //     // subscribeToStateChangeAndSaveToDatabase();
+  //   }, [userID, isDbChecked]);
 };

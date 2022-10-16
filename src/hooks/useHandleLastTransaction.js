@@ -13,7 +13,7 @@ import {
 // 2. set positions state
 // 3. add transactions to history state
 
-export const useHandleLastTransaction = () => {
+export const useHandleLastTransaction = (user) => {
   const [data, setData] = useState(null);
   const cash = useSelector((state) => state.cash.value);
   const dispatch = useDispatch();
@@ -21,68 +21,72 @@ export const useHandleLastTransaction = () => {
     (state) => state.lastTransaction.value
   );
 
-  useEffect(() => {
-    if (lastTranasctionData) {
-      setData(lastTranasctionData);
-    }
-  }, [lastTranasctionData]);
+  // useEffect(() => {
+  //   if (lastTranasctionData) {
+  //     setData(lastTranasctionData);
+  //   }
+  // }, [lastTranasctionData]);
 
   //handle toast after transaction: 1.bought 2.sold 3.closed
   useEffect(() => {
-    if (data) {
-      if (data.side === "buy" && data?.isClosing !== true) {
+    if (lastTranasctionData) {
+      if (lastTranasctionData.side === "buy" && data?.isClosing !== true) {
         toast.success(
           `Congratulations! You just bought ${
-            data.amount
-          } of ${capitalizeFirstLetter(data.id)} for $${
-            data.cost
-          } (current coin price: $${data.price})`,
+            lastTranasctionData.amount
+          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
+            lastTranasctionData.cost
+          } (current coin price: $${lastTranasctionData.price})`,
           { duration: 5000, icon: "🎉" }
         );
-      } else if (data.side === "sell" && data?.isClosing !== true) {
+      } else if (
+        lastTranasctionData.side === "sell" &&
+        lastTranasctionData?.isClosing !== true
+      ) {
         toast.success(
           `Congratulations! You just sold ${
-            data.amount
-          } of ${capitalizeFirstLetter(data.id)} for $${
-            data.cost
-          } (current coin price: $${data.price})`,
+            lastTranasctionData.amount
+          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
+            lastTranasctionData.cost
+          } (current coin price: $${lastTranasctionData.price})`,
           { duration: 5000, icon: "🎉" }
         );
       } else {
         toast.success(
           `Congratulations! You just closed ${
-            data.amount
-          } of ${capitalizeFirstLetter(data.id)} for $${
-            data.cost
-          } (current coin price: $${data.price})`,
+            lastTranasctionData.amount
+          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
+            lastTranasctionData.cost
+          } (current coin price: $${lastTranasctionData.price})`,
           { duration: 5000, icon: "🎉" }
         );
       }
     }
-  }, [data]);
+  }, [lastTranasctionData, user]);
   //handle cash state after transaction
   //if position is closing add to cash; if position is opening remove from cash
   useEffect(() => {
-    if (data) {
-      if (data?.isClosing === true) {
-        let currentCash = cash + data.cost;
+    if (lastTranasctionData) {
+      if (lastTranasctionData?.isClosing === true) {
+        let currentCash = cash + lastTranasctionData.cost;
         dispatch(setCash(currentCash));
+        console.log("here");
       } else {
-        let currentCash = cash - data.cost;
+        let currentCash = cash - lastTranasctionData.cost;
         dispatch(setCash(currentCash));
       }
-      console.log(data);
+      console.log(lastTranasctionData);
     }
-  }, [data]);
+  }, [lastTranasctionData, user]);
   //handle transactions state; remove or add to transactions
 
   useEffect(() => {
-    if (data) {
-      if (data?.isClosing) {
-        dispatch(removePosition(data));
+    if (lastTranasctionData) {
+      if (lastTranasctionData?.isClosing) {
+        dispatch(removePosition(lastTranasctionData));
       } else {
-        dispatch(addPosition(data));
+        dispatch(addPosition(lastTranasctionData));
       }
     }
-  }, [data]);
+  }, [lastTranasctionData, user]);
 };
