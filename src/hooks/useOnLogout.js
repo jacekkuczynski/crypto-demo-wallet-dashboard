@@ -13,7 +13,6 @@ export const useOnLogout = (userID) => {
 
   useEffect(() => {
     if (!userID) {
-      dispatch(setIsDbChecked(false));
       dispatch(resetCash());
       dispatch(resetHistory());
       dispatch(resetPositions());

@@ -1,117 +1,88 @@
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
+import { useReadFromDatabase } from "./useReadFromDatabase";
 import { setCash } from "../features/cash/cashSlice";
 import {
   saveCashToDatabase,
   saveSelectedCoinsToDatabase,
-  savePositionsToDatabase,
-  saveHistoryToDatabase,
 } from "../firebase/saveToDatabase";
-import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
-import { useReadFromDatabase } from "./useReadFromDatabase";
-import { loadPositions } from "../features/positions/positionsSlice";
-import { loadSelectedCoins } from "../features/selectedCoins/selectedCoinsSlice";
-import { loadHistory } from "../features/history/historySlice";
-
-//  This hook checks if it's any data assigned to the user
-//  in the firebase database, when it's true it sets
-//  it to the current app state.
-//  Also, hook subscribes to any crucial state changes and saves
-//  them to the firebase database.
 
 export const useFirebase = () => {
-  const [userSnapshot, setUserSnapshot] = useState(null);
-  const [user, setUser] = useState(null);
-  const userID = useSelector((state) => state.user.value);
-  const selectedCoinsStore = useSelector((state) => state.selectedCoins.value);
+  const [userID, setUserID] = useState(null);
+
+  const [snapshotCash, setSnapshotCash] = useState(null);
+  const [snapshotSelectedCoin, setSnapshotSelectedCoin] = useState(null);
+  const [snapshotPositions, setSnapshotPositions] = useState(null);
+  const [snapshotHistory, setSnapshotHistory] = useState(null);
+
+  const userIDStore = useSelector((state) => state.user.value);
+  const isDbChecked = useSelector((state) => state.isDbChecked.value);
   const cashStore = useSelector((state) => state.cash.value);
-  const isDatabaseCheckedStore = useSelector(
-    (state) => state.isDbChecked.value
-  );
-  const positionsStore = useSelector((state) => state.positions.value);
-  const historyStore = useSelector((state) => state.positions.value);
-  let { data: databaseUserSnapshot } = useReadFromDatabase();
+  const selectedCoinsStore = useSelector((state) => state.selectedCoins.value);
+  let { data: userSnapshot } = useReadFromDatabase(userID);
+
   const dispatch = useDispatch();
 
+  //set user
+  useEffect(() => {
+    setUserID(userIDStore);
+  }, [userIDStore]);
+
   const cashInitialValue = 10000;
-  const positionsInitialValue = [];
   const selectedCoinsInitialValue = [];
+  const positionsInitialValue = [];
   const historyInitialValue = [];
 
+  //check if if user snapshot, set state
   useEffect(() => {
-    setUser(userID);
-  }, [userID]);
-  //check if userSnapshot
-  useEffect(() => {
-    if (user) {
-      setUserSnapshot(databaseUserSnapshot);
+    if (userSnapshot) {
+      setSnapshotCash(userSnapshot.cash?.value);
+      setSnapshotSelectedCoin(userSnapshot.selectedCoins?.value);
+      setSnapshotPositions(userSnapshot.positions?.value);
+      setSnapshotHistory(userSnapshot.history?.value);
     } else {
-      setUserSnapshot(null);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    console.log(userSnapshot);
-  }, [userSnapshot, user, databaseUserSnapshot]);
-  //set data from database to app store
-
-  //if not user database snapshot set db checked to true
-  useEffect(() => {
-    if (!userSnapshot && user) {
       dispatch(setIsDbChecked(true));
+      // setSnapshotCash(null);
+      // setSnapshotSelectedCoin(null);
+      // setSnapshotPositions(null);
+      // setSnapshotHistory(null);
     }
-  }, [user]);
-  useEffect(() => {
-    if (user && userSnapshot && isDatabaseCheckedStore === false) {
-      if (
-        userSnapshot.cash?.value &&
-        userSnapshot.cash?.value !== cashInitialValue
-      ) {
-        dispatch(setCash(userSnapshot.cash.value));
-      }
-      if (
-        userSnapshot.positions?.value &&
-        userSnapshot.positions?.value !== positionsInitialValue
-      ) {
-        dispatch(loadPositions(userSnapshot.positions.value));
-      }
-      if (
-        userSnapshot.selectedCoins?.value &&
-        userSnapshot.selectedCoins?.value !== selectedCoinsInitialValue
-      ) {
-        dispatch(loadSelectedCoins(userSnapshot.selectedCoins.value));
-      }
-      if (
-        userSnapshot.history?.value &&
-        userSnapshot.history?.value !== historyInitialValue
-      ) {
-        dispatch(loadHistory(userSnapshot.history.value));
-      }
-    }
-  }, [user, userSnapshot, isDatabaseCheckedStore, dispatch]);
-  //subscribe to state change and save to database
+  }, [userSnapshot, userID]);
 
   useEffect(() => {
-    if (user && isDatabaseCheckedStore === true) {
+    console.log(userID, "userID");
+    console.log(snapshotCash, "snapshotCash");
+    console.log(snapshotSelectedCoin, "snapshotSelectedCoin");
+    console.log(snapshotPositions, "snapshotPositions");
+    console.log(snapshotHistory, "snapshotHistory");
+  }, [
+    userID,
+    snapshotCash,
+    snapshotSelectedCoin,
+    snapshotPositions,
+    snapshotHistory,
+  ]);
+
+  //   load data from snapshot
+  useEffect(() => {
+    if (isDbChecked === false) {
+      if (snapshotCash && snapshotCash !== cashInitialValue) {
+        dispatch(setCash(snapshotCash));
+        setSnapshotCash(null);
+      }
+    }
+  }, [userID, userSnapshot, isDbChecked, snapshotCash, dispatch]);
+
+  //subscribe to state changes and save to database
+  useEffect(() => {
+    if (userID && isDbChecked === true) {
       if (cashStore !== cashInitialValue) {
-        saveCashToDatabase(user, cashStore);
+        saveCashToDatabase(userID, cashStore);
       }
       if (selectedCoinsStore !== selectedCoinsInitialValue) {
-        saveSelectedCoinsToDatabase(user, selectedCoinsStore);
-      }
-      if (positionsStore !== positionsInitialValue) {
-        savePositionsToDatabase(user, positionsStore);
-      }
-      if (historyStore !== historyInitialValue) {
-        saveHistoryToDatabase(user, historyStore);
+        saveSelectedCoinsToDatabase(userID, selectedCoinsStore);
       }
     }
-  }, [
-    user,
-    isDatabaseCheckedStore,
-    cashStore,
-    selectedCoinsStore,
-    positionsStore,
-    historyStore,
-  ]);
+  }, [userID, isDbChecked, cashStore, selectedCoinsStore]);
 };

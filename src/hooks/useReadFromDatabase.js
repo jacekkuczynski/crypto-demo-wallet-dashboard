@@ -3,30 +3,24 @@ import { db } from "../firebase/initialize";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-export const useReadFromDatabase = () => {
+export const useReadFromDatabase = (userID) => {
   const [data, setData] = useState(null);
-  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const userID = useSelector((state) => state.user?.value);
+
   // console.log(`users/${userID}/${path}`);
 
   useEffect(() => {
-    setUser(userID);
+    const dbRef = ref(db);
+    get(child(dbRef, `users/${userID}/`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setData(snapshot.val());
+          console.log(snapshot.val());
+        }
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, [userID]);
-
-  useEffect(() => {
-    if (user) {
-      const dbRef = ref(db);
-      get(child(dbRef, `users/${user}/`))
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            setData(snapshot.val());
-          }
-        })
-        .catch((error) => {
-          setError(error);
-        });
-    }
-  }, [user]);
   return { data };
 };
