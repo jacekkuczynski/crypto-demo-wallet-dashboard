@@ -3,6 +3,8 @@ import { auth } from "./initialize";
 
 export const logOut = () => {
   signOut(auth)
-    .then(() => {})
+    .then(() => {
+      window.location.reload();
+    })
     .catch((error) => {});
 };

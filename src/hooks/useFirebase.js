@@ -68,19 +68,20 @@ export const useFirebase = (userID) => {
         dispatch(loadHistory(userSnapshot.history?.value));
       }
     }
+    dispatch(setIsDbChecked(true));
   }, [userID, userSnapshot, isDbChecked]);
 
-  //   const subscribeToStateChangeAndSaveToDatabase = () => {
-  //     if (userID && isDbChecked === true) {
-  //       if (cashStore !== cashInitialValue) {
-  //         console.log("here");
-  //         saveCashToDatabase(userID, cashStore);
-  //       }
-  //       if (selectedCoinsStore !== selectedCoinsInitialValue) {
-  //         saveSelectedCoinsToDatabase(userID, selectedCoinsStore);
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    if (userID && isDbChecked === true) {
+      if (cashStore !== cashInitialValue) {
+        console.log("here");
+        saveCashToDatabase(userID, cashStore);
+      }
+      if (selectedCoinsStore !== selectedCoinsInitialValue) {
+        saveSelectedCoinsToDatabase(userID, selectedCoinsStore);
+      }
+    }
+  }, [userID, isDbChecked, cashStore, selectedCoinsStore]);
 
   //   useEffect(() => {
   //     // ifUserSnapshotSetIsDbChecked();
