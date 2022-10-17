@@ -13,24 +13,30 @@ import { useSelector } from "react-redux";
 import { useSetUserState } from "./hooks/useSetUserState";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
-import { useFirebase } from "./hooks/useFirebase";
-import { useOnLogout } from "./hooks/useOnLogout";
+import { useLoadFromDatabase } from "./hooks/useLoadFromDatabase";
+import { useSubscribeToStateAndSaveToDatabase } from "./hooks/useSubscribeToStateAndSaveToDatabase";
 
 const App = () => {
   const [coinData, setCoinData] = useState(null);
+  const [user, setUser] = useState(null);
   const { data } = useFetchCoinsData();
-  const isUser = useSelector((state) => state.user?.value);
-  useFirebase(isUser);
+  const userStore = useSelector((state) => state.user?.value);
+  useLoadFromDatabase(user);
+  useSubscribeToStateAndSaveToDatabase(user);
   useSetUserState();
-  useHandleLastTransaction(isUser);
-  // useOnLogout(isUser);
+  useHandleLastTransaction(user);
+
+  useEffect(() => {
+    setUser(userStore);
+  }, [userStore]);
+
   useEffect(() => {
     if (data) {
       setCoinData(data);
     }
   }, [data]);
 
-  return !isUser ? (
+  return !user ? (
     <LoginPage />
   ) : (
     <div className="flex min-h-screen min-w-screen bg-neutral-50">

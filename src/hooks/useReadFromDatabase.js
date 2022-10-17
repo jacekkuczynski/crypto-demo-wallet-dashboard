@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export const useReadFromDatabase = (userID) => {
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
 
   // console.log(`users/${userID}/${path}`);
 
@@ -15,11 +14,11 @@ export const useReadFromDatabase = (userID) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setData(snapshot.val());
+        } else {
+          setData(null);
         }
       })
-      .catch((error) => {
-        setError(error);
-      });
+      .catch((error) => {});
   }, [userID]);
 
   useEffect(() => {
