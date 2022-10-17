@@ -10,56 +10,36 @@ export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   const positionsStore = useSelector((state) => state.positions.value);
   const historyStore = useSelector((state) => state.history.value);
 
-  const historyInitialValue = [];
+  const saveToDatabase = (data, path) => {
+    set(ref(db, "users/" + userID + path), {
+      value: data,
+    });
+  };
 
   useEffect(() => {
     const cashInitialValue = 10000;
-    const saveCashToDatabase = (cash) => {
-      console.log("cash saved");
-      set(ref(db, "users/" + userID + "/cash/"), {
-        value: cash,
-      });
-    };
     if (isDbChecked === true && userID) {
-      if (cashStore !== cashInitialValue) saveCashToDatabase(cashStore);
+      if (cashStore !== cashInitialValue) saveToDatabase(cashStore, "/cash/");
     }
   }, [userID, isDbChecked, cashStore]);
 
   useEffect(() => {
-    const saveSelectedCoinsToDatabase = (selectedCoins) => {
-      console.log("selectedCoins saved");
-      set(ref(db, "users/" + userID + "/selectedCoins/"), {
-        value: selectedCoins,
-      });
-    };
     if (isDbChecked === true && userID) {
       if (selectedCoinsStore.length > 0)
-        saveSelectedCoinsToDatabase(selectedCoinsStore);
+        saveToDatabase(selectedCoinsStore, "/selectedCoins/");
     }
   }, [userID, isDbChecked, selectedCoinsStore]);
 
   useEffect(() => {
-    const savePositionsToDatabase = (positions) => {
-      console.log("positions saved");
-      set(ref(db, "users/" + userID + "/positions/"), {
-        value: positions,
-      });
-    };
     if (isDbChecked === true && userID) {
-      if (positionsStore.length > 0) savePositionsToDatabase(positionsStore);
+      if (positionsStore.length > 0)
+        saveToDatabase(positionsStore, "/positions/");
     }
   }, [userID, isDbChecked, positionsStore]);
 
   useEffect(() => {
-    const saveHistoryToDatabase = (history) => {
-      console.log("history saved");
-      set(ref(db, "users/" + userID + "/history/"), {
-        value: history,
-      });
-    };
-
     if (isDbChecked === true && userID) {
-      if (historyStore.length > 0) saveHistoryToDatabase(historyStore);
+      if (historyStore.length > 0) saveToDatabase(historyStore, "/history/");
     }
   }, [userID, historyStore, isDbChecked]);
 };

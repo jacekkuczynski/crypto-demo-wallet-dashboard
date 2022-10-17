@@ -9,11 +9,9 @@ import { loadHistory } from "../features/history/historySlice";
 
 export const useLoadFromDatabase = (userID) => {
   const [snapshot, setSnapshot] = useState(null);
-  const [isChecked, setIsChecked] = useState(false);
   const isDbChecked = useSelector((state) => state.isDbChecked.value);
-  const dispatch = useDispatch();
-
   const { data: userSnapshot } = useReadFromDatabase(userID);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userSnapshot) setSnapshot(userSnapshot);
@@ -23,7 +21,7 @@ export const useLoadFromDatabase = (userID) => {
     if (userID && userSnapshot === null && isDbChecked === false) {
       dispatch(setIsDbChecked(true));
     }
-  }, [userID, userSnapshot, dispatch]);
+  }, [userID, userSnapshot, dispatch, isDbChecked]);
 
   useEffect(() => {
     console.log(isDbChecked, "isDbChecked");
@@ -49,8 +47,5 @@ export const useLoadFromDatabase = (userID) => {
       userSnapshotHistory = null;
       dispatch(setIsDbChecked(true));
     }
-    // if (isDbChecked === false && !snapshot && userID) {
-    //   dispatch(setIsDbChecked(true));
-    // }
   }, [isDbChecked, userID, snapshot, dispatch]);
 };

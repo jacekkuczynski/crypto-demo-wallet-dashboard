@@ -44,7 +44,7 @@ export const LoginPage = () => {
         </div>
         <div className="flex flex-col items-center mt-8">
           <LoginAnonymouslyBtn />
-          <p>(all data will be lost after reloading a page)</p>
+          <p>(data will be shared with all anonymous users)</p>
         </div>
       </div>
     </>

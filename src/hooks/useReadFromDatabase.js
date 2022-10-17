@@ -1,12 +1,9 @@
 import { ref, child, get } from "firebase/database";
 import { db } from "../firebase/initialize";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 
 export const useReadFromDatabase = (userID) => {
   const [data, setData] = useState(null);
-
-  // console.log(`users/${userID}/${path}`);
 
   useEffect(() => {
     const dbRef = ref(db);
