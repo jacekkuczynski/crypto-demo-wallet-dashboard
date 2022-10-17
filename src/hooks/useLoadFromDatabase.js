@@ -19,11 +19,11 @@ export const useLoadFromDatabase = (userID) => {
     if (userSnapshot) setSnapshot(userSnapshot);
   }, [userSnapshot, userID]);
 
-  //   useEffect(() => {
-  //     if (userID && !userSnapshot) {
-  //       dispatch(setIsDbChecked(true));
-  //     }
-  //   }, [userID, userSnapshot, dispatch]);
+  useEffect(() => {
+    if (userID && userSnapshot === null && isDbChecked === false) {
+      dispatch(setIsDbChecked(true));
+    }
+  }, [userID, userSnapshot, dispatch]);
 
   useEffect(() => {
     console.log(isDbChecked, "isDbChecked");

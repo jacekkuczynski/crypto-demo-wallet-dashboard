@@ -10,52 +10,56 @@ export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   const positionsStore = useSelector((state) => state.positions.value);
   const historyStore = useSelector((state) => state.history.value);
 
-  const cashInitialValue = 10000;
-  const selectedCoinsInitialValue = [];
-  const positionsInitialValue = [];
   const historyInitialValue = [];
 
-  const saveCashToDatabase = (cash) => {
-    console.log("cash saved");
-    set(ref(db, "users/" + userID + "/cash/"), {
-      value: cash,
-    });
-  };
-  const saveSelectedCoinsToDatabase = (selectedCoins) => {
-    console.log("selectedCoins saved");
-    set(ref(db, "users/" + userID + "/selectedCoins/"), {
-      value: selectedCoins,
-    });
-  };
-  const savePositionsToDatabase = (positions) => {
-    console.log("positions saved");
-    set(ref(db, "users/" + userID + "/positions/"), {
-      value: positions,
-    });
-  };
-  const saveHistoryToDatabase = (history) => {
-    console.log("history saved");
-    set(ref(db, "users/" + userID + "/history/"), {
-      value: history,
-    });
-  };
-
   useEffect(() => {
+    const cashInitialValue = 10000;
+    const saveCashToDatabase = (cash) => {
+      console.log("cash saved");
+      set(ref(db, "users/" + userID + "/cash/"), {
+        value: cash,
+      });
+    };
     if (isDbChecked === true && userID) {
       if (cashStore !== cashInitialValue) saveCashToDatabase(cashStore);
-      if (selectedCoinsStore !== selectedCoinsInitialValue)
-        saveSelectedCoinsToDatabase(selectedCoinsStore);
-      if (positionsStore !== positionsInitialValue)
-        savePositionsToDatabase(positionsStore);
-      if (historyStore !== historyInitialValue)
-        saveHistoryToDatabase(historyStore);
     }
-  }, [
-    userID,
-    isDbChecked,
-    cashStore,
-    selectedCoinsStore,
-    positionsStore,
-    historyStore,
-  ]);
+  }, [userID, isDbChecked, cashStore]);
+
+  useEffect(() => {
+    const saveSelectedCoinsToDatabase = (selectedCoins) => {
+      console.log("selectedCoins saved");
+      set(ref(db, "users/" + userID + "/selectedCoins/"), {
+        value: selectedCoins,
+      });
+    };
+    if (isDbChecked === true && userID) {
+      if (selectedCoinsStore.length > 0)
+        saveSelectedCoinsToDatabase(selectedCoinsStore);
+    }
+  }, [userID, isDbChecked, selectedCoinsStore]);
+
+  useEffect(() => {
+    const savePositionsToDatabase = (positions) => {
+      console.log("positions saved");
+      set(ref(db, "users/" + userID + "/positions/"), {
+        value: positions,
+      });
+    };
+    if (isDbChecked === true && userID) {
+      if (positionsStore.length > 0) savePositionsToDatabase(positionsStore);
+    }
+  }, [userID, isDbChecked, positionsStore]);
+
+  useEffect(() => {
+    const saveHistoryToDatabase = (history) => {
+      console.log("history saved");
+      set(ref(db, "users/" + userID + "/history/"), {
+        value: history,
+      });
+    };
+
+    if (isDbChecked === true && userID) {
+      if (historyStore.length > 0) saveHistoryToDatabase(historyStore);
+    }
+  }, [userID, historyStore, isDbChecked]);
 };
