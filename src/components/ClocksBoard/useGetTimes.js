@@ -8,7 +8,6 @@ export const useGetTimes = () => {
     const timeWithOffsetInMs = timeInMs + offsetInMs;
     const dateWithOffset = new Date(timeWithOffsetInMs);
 
-    // date.setTime(date.getTime() + timeOffsetInMS);
     return dateWithOffset;
   };
   const times = clocksData.map((city) => {

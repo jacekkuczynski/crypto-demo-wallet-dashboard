@@ -17,7 +17,7 @@ export const SingleClock = ({ initialVal, cityName }) => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      {cityName ? <p className="text-center">{cityName}</p> : null}
+      {cityName ? <p className="text-center p-1">{cityName}</p> : null}
 
       <Clock size={100} value={value} />
     </div>

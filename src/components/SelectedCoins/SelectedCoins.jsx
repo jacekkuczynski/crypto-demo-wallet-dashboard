@@ -10,16 +10,18 @@ export const SelectedCoins = ({ coinData }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex flex-col justify-center gap-4 overflow-auto h-fit border drop-shadow-lg p-5 w-full bg-neutral-50">
+    <div className="my-2 overflow-auto w-11/12 h-96 drop-shadow-lg p-5 bg-neutral-50">
       {selectedCoins.length > 0 ? (
-        <h2 className="text-2xl font-bold	text-neutral-700">Coin Watchlist</h2>
+        <h2 className="text-2xl text-center mb-2 font-bold text-neutral-700">
+          Coin Watchlist
+        </h2>
       ) : (
         <h2 className="text-lg text-center font-light	text-neutral-700">
           Your watchlist is empty... Please choose some coins from select coins
           menu
         </h2>
       )}
-      <ul className="flex flex-col">
+      <ul>
         {selectedCoins?.map((coin) => {
           return (
             <div

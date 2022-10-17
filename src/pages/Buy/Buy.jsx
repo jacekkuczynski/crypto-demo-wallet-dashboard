@@ -1,5 +1,10 @@
 import React from "react";
+import { BuyForm } from "../../components/BuyForm/BuyForm";
 
-export const Buy = () => {
-  return <div className="">Buy</div>;
+export const Buy = ({ coinData }) => {
+  return (
+    <div className="">
+      <BuyForm coinData={coinData} />
+    </div>
+  );
 };

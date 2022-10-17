@@ -4,9 +4,7 @@ import { auth } from "./initialize";
 export const logOut = () => {
   signOut(auth)
     .then(() => {
-      console.log("logout");
+      window.location.reload();
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };

@@ -1,17 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const cashSlice = createSlice({
+const cashSlice = createSlice({
   name: "cash",
-  initialState: {
-    value: { cash: 10000 },
-    reducers: {
-      setCash: (state, action) => {
-        state.value.cash = action.payload;
-      },
+  initialState: { value: 10000 },
+  reducers: {
+    setCash: (state, action) => {
+      state.value = action.payload;
+    },
+    resetCash: (state) => {
+      state.value = 10000;
     },
   },
 });
 
-export const { setCash } = cashSlice.actions;
+export const { resetCash, setCash } = cashSlice.actions;
 
 export default cashSlice.reducer;

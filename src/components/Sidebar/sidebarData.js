@@ -4,7 +4,6 @@ import {
   ClockIcon,
   BookmarkIcon,
   QuestionMarkCircleIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
   CurrencyDollarIcon,
 } from "@heroicons/react/24/solid";
 
@@ -34,11 +33,6 @@ export const sidebarData = [
     name: "FAQ",
     to: "/faq",
     icon: <QuestionMarkCircleIcon className="h-4/6 w-auto" />,
-  },
-  {
-    name: "Support",
-    to: "/support",
-    icon: <ChatBubbleOvalLeftEllipsisIcon className="h-4/6 w-auto" />,
   },
   {
     name: "Buy",

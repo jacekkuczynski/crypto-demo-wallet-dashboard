@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { CoinCard } from "../CoinCard/CoinCard";
-import { BuyModal } from "../BuyModal/BuyModal";
+import { InfoModal } from "../InfoModal/InfoModal";
 
 export const CoinsGrid = ({ coinData }) => {
   const selectedCoins = useSelector((state) => state.selectedCoins.value);
@@ -21,7 +21,7 @@ export const CoinsGrid = ({ coinData }) => {
   };
   return (
     <div>
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9  gap-y-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9 gap-4">
         {selectedCoinsData?.map((coin) => {
           return (
             <div
@@ -50,7 +50,7 @@ export const CoinsGrid = ({ coinData }) => {
             </div>
           );
         })}
-        <BuyModal open={open} onClose={handleClose} data={clickedCoinData} />
+        <InfoModal open={open} onClose={handleClose} data={clickedCoinData} />
       </div>
     </div>
   );

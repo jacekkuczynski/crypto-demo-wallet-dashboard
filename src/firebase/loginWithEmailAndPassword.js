@@ -3,15 +3,9 @@ import { auth } from "./initialize";
 
 export const loginWithEmailAndPassword = async (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      // const user = userCredential.user;
-      // console.log(user);
-    })
+    .then((userCredential) => {})
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      console.log(errorCode);
+      console.log(error.message);
+      console.log(error.code);
     });
 };
