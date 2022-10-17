@@ -18,8 +18,5 @@ export const useReadFromDatabase = (userID) => {
       .catch((error) => {});
   }, [userID]);
 
-  useEffect(() => {
-    console.log(data, "data");
-  }, [data, userID]);
   return { data };
 };

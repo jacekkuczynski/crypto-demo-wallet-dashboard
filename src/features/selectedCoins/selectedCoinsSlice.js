@@ -16,16 +16,9 @@ export const selectedCoinsSlice = createSlice({
         return el !== action.payload;
       });
     },
-    resetSelectedCoins: (state) => {
-      state.value = [];
-    },
   },
 });
 
-export const {
-  resetSelectedCoins,
-  loadSelectedCoins,
-  addSelectedCoins,
-  removeSelectedCoins,
-} = selectedCoinsSlice.actions;
+export const { loadSelectedCoins, addSelectedCoins, removeSelectedCoins } =
+  selectedCoinsSlice.actions;
 export default selectedCoinsSlice.reducer;
