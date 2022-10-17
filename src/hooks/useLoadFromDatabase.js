@@ -47,9 +47,10 @@ export const useLoadFromDatabase = (userID) => {
       userSnapshotSelectedCoin = null;
       userSnapshotPositions = null;
       userSnapshotHistory = null;
-    }
-    if (isDbChecked === false && !snapshot && userID) {
       dispatch(setIsDbChecked(true));
     }
+    // if (isDbChecked === false && !snapshot && userID) {
+    //   dispatch(setIsDbChecked(true));
+    // }
   }, [isDbChecked, userID, snapshot, dispatch]);
 };

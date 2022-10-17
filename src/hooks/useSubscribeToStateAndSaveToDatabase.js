@@ -16,21 +16,25 @@ export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   const historyInitialValue = [];
 
   const saveCashToDatabase = (cash) => {
+    console.log("cash saved");
     set(ref(db, "users/" + userID + "/cash/"), {
       value: cash,
     });
   };
   const saveSelectedCoinsToDatabase = (selectedCoins) => {
+    console.log("selectedCoins saved");
     set(ref(db, "users/" + userID + "/selectedCoins/"), {
       value: selectedCoins,
     });
   };
   const savePositionsToDatabase = (positions) => {
+    console.log("positions saved");
     set(ref(db, "users/" + userID + "/positions/"), {
       value: positions,
     });
   };
   const saveHistoryToDatabase = (history) => {
+    console.log("history saved");
     set(ref(db, "users/" + userID + "/history/"), {
       value: history,
     });
