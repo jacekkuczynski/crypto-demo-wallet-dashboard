@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { capitalizeFirstLetter } from "../helpers/helpers";
 import { setCash } from "../features/cash/cashSlice";
@@ -9,28 +9,19 @@ import {
   removePosition,
 } from "../features/positions/positionsSlice";
 
-// 1. set cash
-// 2. set positions state
-// 3. add transactions to history state
-
 export const useHandleLastTransaction = (user) => {
-  const [data, setData] = useState(null);
   const cash = useSelector((state) => state.cash.value);
   const dispatch = useDispatch();
   const lastTranasctionData = useSelector(
     (state) => state.lastTransaction.value
   );
-
-  // useEffect(() => {
-  //   if (lastTranasctionData) {
-  //     setData(lastTranasctionData);
-  //   }
-  // }, [lastTranasctionData]);
-
   //handle toast after transaction: 1.bought 2.sold 3.closed
   useEffect(() => {
     if (lastTranasctionData) {
-      if (lastTranasctionData.side === "buy" && data?.isClosing !== true) {
+      if (
+        lastTranasctionData.side === "buy" &&
+        lastTranasctionData?.isClosing !== true
+      ) {
         toast.success(
           `Congratulations! You just bought ${
             lastTranasctionData.amount
@@ -79,7 +70,6 @@ export const useHandleLastTransaction = (user) => {
     }
   }, [lastTranasctionData, user]);
   //handle transactions state; remove or add to transactions
-
   useEffect(() => {
     if (lastTranasctionData) {
       if (lastTranasctionData?.isClosing) {
