@@ -4,7 +4,6 @@ import { useGetCoordinates } from "../components/Weather/useGetCoordinates";
 
 export const useFetchWeatherData = () => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { coordinates } = useGetCoordinates();
 
@@ -28,12 +27,9 @@ export const useFetchWeatherData = () => {
         })
         .catch((err) => {
           setError(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
         });
     }
   }, [url, coordinates]);
 
-  return { data, isLoading, error };
+  return { data, error };
 };

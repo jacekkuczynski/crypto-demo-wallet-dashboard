@@ -5,7 +5,6 @@ export const loginWithEmailAndPassword = async (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {})
     .catch((error) => {
-      console.log(error.message);
-      console.log(error.code);
+
     });
 };

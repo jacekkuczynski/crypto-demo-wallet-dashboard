@@ -1,6 +1,7 @@
 import { CoinsGrid } from "../../components/CoinsGrid/CoinsGrid";
 import { CoinSelect } from "../../components/CoinSelect/CoinSelect";
 import { SelectedCoins } from "../../components/SelectedCoins/SelectedCoins";
+import { ErrorModal } from "../../components/ErrorModal/ErrorModal";
 
 export const Market = ({ coinData }) => {
   return (
@@ -14,6 +15,7 @@ export const Market = ({ coinData }) => {
         <CoinSelect coinData={coinData} />
         <SelectedCoins coinData={coinData} />
       </div>
+      <ErrorModal />
     </div>
   );
 };

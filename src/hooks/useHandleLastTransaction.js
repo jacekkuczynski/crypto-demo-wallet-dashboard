@@ -61,12 +61,10 @@ export const useHandleLastTransaction = (user) => {
       if (lastTranasctionData?.isClosing === true) {
         let currentCash = cash + lastTranasctionData.cost;
         dispatch(setCash(currentCash));
-        console.log("here");
       } else {
         let currentCash = cash - lastTranasctionData.cost;
         dispatch(setCash(currentCash));
       }
-      console.log(lastTranasctionData);
     }
   }, [lastTranasctionData, user]);
   //handle transactions state; remove or add to transactions

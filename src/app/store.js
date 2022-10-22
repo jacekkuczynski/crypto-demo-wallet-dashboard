@@ -6,6 +6,7 @@ import lastTransactionReducer from "../features/lastTransaction/lastTransactionS
 import positionsReducer from "../features/positions/positionsSlice";
 import isDbCheckedReducer from "../features/isDbChecked/isDbChecked";
 import historyReducer from "../features/history/historySlice";
+import errorModalReducer from "../features/errorModal/errorModalSlice";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     lastTransaction: lastTransactionReducer,
     isDbChecked: isDbCheckedReducer,
     history: historyReducer,
+    errorModal: errorModalReducer,
   },
 });

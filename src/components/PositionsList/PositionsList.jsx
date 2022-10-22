@@ -23,12 +23,9 @@ export const PositionsList = ({ coinData }) => {
   const handleClosePos = (position) => {
     const pos = { ...position };
     const currentCost = currentPrice(pos.id) * pos.amount;
-    // console.log(currentPrice(pos.id));
     pos.isClosing = true;
     pos.cost = currentCost;
-    //
     dispatch(setLastTransaction(pos));
-    console.log(pos);
   };
 
   return (
