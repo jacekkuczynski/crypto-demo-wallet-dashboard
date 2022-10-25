@@ -7,7 +7,7 @@ export const PageTransitionAnim = (props) => {
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -10, opacity: 0 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.25 }}
         className="h-full flex flex-col"
       >
         {props.children}

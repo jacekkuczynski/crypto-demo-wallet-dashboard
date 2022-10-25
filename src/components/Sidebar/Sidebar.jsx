@@ -62,14 +62,12 @@ export const Sidebar = () => {
             {sidebarData.map((link) => {
               return (
                 <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "font-semibold" : ""
+                  }
                   key={link.name}
                   end
                   to={link.to}
-                  className={(state) =>
-                    state.isActive
-                      ? "bg-neutral-200 drop-shadow-sm rounded-lg"
-                      : "bg-neutral-100"
-                  }
                 >
                   <div className="hover:bg-neutral-200 hover:rounded-lg transition ease-in-out delay-80 px-5 py-5">
                     <SidebarItem name={link.name} icon={link.icon} />

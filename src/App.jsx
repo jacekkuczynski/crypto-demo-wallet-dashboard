@@ -41,7 +41,7 @@ const App = () => {
             <Route path="positions" element={<Positions coinData={data} />} />
             <Route path="faq" element={<Faq />} />
             <Route path="buy" element={<Buy coinData={data} />} />
-          </Routes>{" "}
+          </Routes>
         </AnimatePresence>
       </div>
     </div>
