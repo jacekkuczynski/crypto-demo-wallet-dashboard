@@ -24,9 +24,9 @@ export const useHandleLastTransaction = (user) => {
         lastTranasctionData?.isClosing !== true
       ) {
         toast.success(
-          `Congratulations! You just bought ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(
+          `Congratulations! You just bought ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
             lastTranasctionData.id
           )} for $${lastTranasctionData.cost.toFixed(
             2
@@ -38,9 +38,9 @@ export const useHandleLastTransaction = (user) => {
         lastTranasctionData?.isClosing !== true
       ) {
         toast.success(
-          `Congratulations! You just sold ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(
+          `Congratulations! You just sold ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
             lastTranasctionData.id
           )} for $${lastTranasctionData.cost.toFixed(
             2
@@ -49,9 +49,9 @@ export const useHandleLastTransaction = (user) => {
         );
       } else {
         toast.success(
-          `Congratulations! You just closed ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(
+          `Congratulations! You just closed ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
             lastTranasctionData.id
           )} for $${lastTranasctionData.cost.toFixed(
             2

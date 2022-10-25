@@ -1,5 +1,5 @@
-import React from "react";
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
 
 export const Faq = () => {
-  return <div>Faq</div>;
+  return <PageTransitionAnim>Faq</PageTransitionAnim>;
 };

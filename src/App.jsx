@@ -15,6 +15,7 @@ import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
 import { useLoadFromDatabase } from "./hooks/useLoadFromDatabase";
 import { useSubscribeToStateAndSaveToDatabase } from "./hooks/useSubscribeToStateAndSaveToDatabase";
 import { ErrorModal } from "./components/ErrorModal/ErrorModal";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const { data } = useFetchCoinsData();
@@ -32,14 +33,16 @@ const App = () => {
       <ErrorModal />
       <Sidebar />
       <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50">
-        <Routes>
-          <Route path="/" element={<Homepage coinData={data} />} />
-          <Route path="market" element={<Market coinData={data} />} />
-          <Route path="history" element={<History />} />
-          <Route path="positions" element={<Positions coinData={data} />} />
-          <Route path="faq" element={<Faq />} />
-          <Route path="buy" element={<Buy coinData={data} />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Homepage coinData={data} />} />
+            <Route path="market" element={<Market coinData={data} />} />
+            <Route path="history" element={<History />} />
+            <Route path="positions" element={<Positions coinData={data} />} />
+            <Route path="faq" element={<Faq />} />
+            <Route path="buy" element={<Buy coinData={data} />} />
+          </Routes>{" "}
+        </AnimatePresence>
       </div>
     </div>
   );

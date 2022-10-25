@@ -28,7 +28,7 @@ export const LoginPage = () => {
 
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <>
+    <div>
       <div className="flex flex-col items-center justify-start w-screen h-screen">
         <div className=" mt-32 pb-12 text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-t from-neutral-400 to-sky-800">
           CRYPTOCURRENCY DEMO WALLET
@@ -47,6 +47,6 @@ export const LoginPage = () => {
           <p>(data will be shared with all anonymous users)</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };

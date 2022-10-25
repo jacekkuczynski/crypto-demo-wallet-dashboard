@@ -1,9 +1,10 @@
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
 import { PositionsList } from "../../components/PositionsList/PositionsList";
 
 export const Positions = ({ coinData }) => {
   return (
-    <div>
+    <PageTransitionAnim>
       <PositionsList coinData={coinData} />
-    </div>
+    </PageTransitionAnim>
   );
 };
