@@ -1,13 +1,17 @@
 import { ClocksBoard } from "../../components/ClocksBoard/ClocksBoard";
-import { Greetings } from "../../components/Greetings/Greetings";
 import { Weather } from "../../components/Weather/Weather";
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
 
-export const Homepage = ({ coinData }) => {
+export const Homepage = () => {
   return (
-    <div className="flex flex-col gap-4 items-center">
-      <Greetings />
-      <ClocksBoard />
-      <Weather />
-    </div>
+    <PageTransitionAnim>
+      <div className="flex flex-col gap-8 items-center m-4">
+        <p className="text-4xl text-center font-semibold">
+          Welcome! It's perfect time and weather to invest!
+        </p>
+        <ClocksBoard />
+        <Weather />
+      </div>
+    </PageTransitionAnim>
   );
 };

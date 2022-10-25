@@ -5,8 +5,6 @@ export const loginAnonymously = () => {
   signInAnonymously(auth)
     .then(() => {})
     .catch((error) => {
-      console.log(error.message);
-      console.log(error.code);
       // ...
     });
 };

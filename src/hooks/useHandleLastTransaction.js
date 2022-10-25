@@ -8,6 +8,7 @@ import {
   addPosition,
   removePosition,
 } from "../features/positions/positionsSlice";
+import { addToHistory } from "../features/history/historySlice";
 
 export const useHandleLastTransaction = (user) => {
   const cash = useSelector((state) => state.cash.value);
@@ -23,11 +24,13 @@ export const useHandleLastTransaction = (user) => {
         lastTranasctionData?.isClosing !== true
       ) {
         toast.success(
-          `Congratulations! You just bought ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          `Congratulations! You just bought ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       } else if (
@@ -35,20 +38,24 @@ export const useHandleLastTransaction = (user) => {
         lastTranasctionData?.isClosing !== true
       ) {
         toast.success(
-          `Congratulations! You just sold ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          `Congratulations! You just sold ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       } else {
         toast.success(
-          `Congratulations! You just closed ${
-            lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          `Congratulations! You just closed ${lastTranasctionData.amount.toFixed(
+            4
+          )} of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       }
@@ -61,12 +68,10 @@ export const useHandleLastTransaction = (user) => {
       if (lastTranasctionData?.isClosing === true) {
         let currentCash = cash + lastTranasctionData.cost;
         dispatch(setCash(currentCash));
-        console.log("here");
       } else {
         let currentCash = cash - lastTranasctionData.cost;
         dispatch(setCash(currentCash));
       }
-      console.log(lastTranasctionData);
     }
   }, [lastTranasctionData, user]);
   //handle transactions state; remove or add to transactions
@@ -77,6 +82,13 @@ export const useHandleLastTransaction = (user) => {
       } else {
         dispatch(addPosition(lastTranasctionData));
       }
+    }
+  }, [lastTranasctionData, user]);
+
+  //handle history
+  useEffect(() => {
+    if (lastTranasctionData) {
+      dispatch(addToHistory(lastTranasctionData));
     }
   }, [lastTranasctionData, user]);
 };

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Market } from "./pages/Market/Market";
 import { Homepage } from "./pages/Homepage/Homepage";
@@ -15,42 +14,35 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { useHandleLastTransaction } from "./hooks/useHandleLastTransaction";
 import { useLoadFromDatabase } from "./hooks/useLoadFromDatabase";
 import { useSubscribeToStateAndSaveToDatabase } from "./hooks/useSubscribeToStateAndSaveToDatabase";
+import { ErrorModal } from "./components/ErrorModal/ErrorModal";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
-  const [coinData, setCoinData] = useState(null);
-  const [user, setUser] = useState(null);
   const { data } = useFetchCoinsData();
   const userStore = useSelector((state) => state.user?.value);
-  useLoadFromDatabase(user);
-  useSubscribeToStateAndSaveToDatabase(user);
+  useLoadFromDatabase(userStore);
+  useSubscribeToStateAndSaveToDatabase(userStore);
   useSetUserState();
-  useHandleLastTransaction(user);
+  useHandleLastTransaction(userStore);
 
-  useEffect(() => {
-    setUser(userStore);
-  }, [userStore]);
-
-  useEffect(() => {
-    if (data) {
-      setCoinData(data);
-    }
-  }, [data]);
-
-  return !user ? (
+  return !userStore ? (
     <LoginPage />
   ) : (
     <div className="flex min-h-screen min-w-screen bg-neutral-50">
       <Toaster position="bottom-right" />
+      <ErrorModal />
       <Sidebar />
-      <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50">
-        <Routes>
-          <Route path="/" element={<Homepage coinData={coinData} />} />
-          <Route path="market" element={<Market coinData={coinData} />} />
-          <Route path="history" element={<History />} />
-          <Route path="positions" element={<Positions coinData={coinData} />} />
-          <Route path="faq" element={<Faq />} />
-          <Route path="buy" element={<Buy coinData={coinData} />} />
-        </Routes>
+      <div className="w-full pb-8 pt-20 md:px-8 md:py-8 bg-neutral-50">
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Homepage coinData={data} />} />
+            <Route path="market" element={<Market coinData={data} />} />
+            <Route path="history" element={<History />} />
+            <Route path="positions" element={<Positions coinData={data} />} />
+            <Route path="faq" element={<Faq />} />
+            <Route path="buy" element={<Buy coinData={data} />} />
+          </Routes>
+        </AnimatePresence>
       </div>
     </div>
   );

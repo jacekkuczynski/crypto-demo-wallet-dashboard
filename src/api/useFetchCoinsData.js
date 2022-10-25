@@ -1,18 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setModal } from "../features/errorModal/errorModalSlice";
 
 export const useFetchCoinsData = () => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
-  //fetch 100 coins sorted by market cap descending
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=%20market_cap_desc&per_page=100";
 
-  useEffect(() => {
-    setIsLoading(true);
+  const refetchTime = 3 * 60 * 1000;
+
+  const fetcher = () => {
     axios
       .get(url)
       .then((response) => {
@@ -34,12 +35,22 @@ export const useFetchCoinsData = () => {
         );
       })
       .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
+        if (err.response || err.request) {
+          dispatch(setModal(true));
+        }
       });
+  };
+
+  useEffect(() => {
+    fetcher();
   }, []);
 
-  return { data, isLoading, error };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetcher();
+    }, refetchTime);
+    return () => clearInterval(interval);
+  }, [data]);
+
+  return { data };
 };

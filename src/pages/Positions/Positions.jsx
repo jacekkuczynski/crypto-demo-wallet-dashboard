@@ -1,9 +1,10 @@
-import { PositionsList } from "../../components/PositionsList/PositionsList";
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
+import { PositionsGrid } from "../../components/PositionsGrid/PositionsGrid";
 
 export const Positions = ({ coinData }) => {
   return (
-    <div>
-      <PositionsList coinData={coinData} />
-    </div>
+    <PageTransitionAnim>
+      <PositionsGrid coinData={coinData} />
+    </PageTransitionAnim>
   );
 };

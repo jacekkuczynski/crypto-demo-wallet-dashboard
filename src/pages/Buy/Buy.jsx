@@ -1,10 +1,11 @@
 import React from "react";
 import { BuyForm } from "../../components/BuyForm/BuyForm";
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
 
 export const Buy = ({ coinData }) => {
   return (
-    <div className="">
+    <PageTransitionAnim>
       <BuyForm coinData={coinData} />
-    </div>
+    </PageTransitionAnim>
   );
 };

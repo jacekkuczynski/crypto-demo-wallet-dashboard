@@ -7,12 +7,8 @@ export const lastTransactionSlice = createSlice({
     setLastTransaction: (state, action) => {
       state.value = action.payload;
     },
-    resetLastTransaction: (state) => {
-      state.value = null;
-    },
   },
 });
 
-export const { resetLastTransaction, setLastTransaction } =
-  lastTransactionSlice.actions;
+export const { setLastTransaction } = lastTransactionSlice.actions;
 export default lastTransactionSlice.reducer;

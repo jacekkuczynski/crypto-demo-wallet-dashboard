@@ -24,10 +24,6 @@ export const useLoadFromDatabase = (userID) => {
   }, [userID, userSnapshot, dispatch, isDbChecked]);
 
   useEffect(() => {
-    console.log(isDbChecked, "isDbChecked");
-    console.log(snapshot, "snapshot");
-    console.log(userID, "userID");
-
     if (snapshot && userID) {
       let userSnapshotCash = snapshot.cash?.value;
       let userSnapshotSelectedCoin = snapshot.selectedCoins?.value;

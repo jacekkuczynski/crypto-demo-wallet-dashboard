@@ -55,98 +55,103 @@ export const BuyForm = ({ coinData }) => {
   };
 
   return (
-    <div className="text-2xl font-bold flex flex-col items-center text-center gap-4 w-11/12 divide-y-8">
-      {cash <= 0 ? (
-        <div>
-          sorry, no money, can't open new positions, close some positions to get
-          some cash, or wait
-        </div>
-      ) : (
-        <>
+    <>
+      <div className="text-center mx-4">
+        Select any of your coins from the watchlist to open a transaction:
+      </div>
+      <div className="text-2xl font-semibold ">
+        {cash <= 0 ? (
           <div>
-            Select any of your coins from the watchlist to open a transaction:
+            sorry, no money, can't open new positions, close some positions to
+            get some cash, or wait
           </div>
-          <form onSubmit={handleSubmit} className={`flex flex-col gap-2 py-4`}>
-            {/* select options input */}
-            <select
-              id="selected"
-              onChange={(e) => {
-                setSelectedCoin(e.target.value);
-              }}
+        ) : (
+          <>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-2 p-4 w-full "
             >
-              <option></option>
-              {selectOptions?.map((option) => {
-                return (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                );
-              })}
-            </select>
-            {/* range input */}
-            <label htmlFor="range">Select Percent of you cash</label>
-            <input
-              className={selectedCoin?.length < 1 ? "block" : "hidden"}
-              readOnly
-              defaultValue="0"
-              type="range"
-              disabled
-            ></input>
-            <input
-              className={selectedCoin?.length < 1 ? "hidden" : "block"}
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              id="range"
-              value={rangeValue}
-              onChange={(e) => {
-                setRangeValue(e.target.value);
-              }}
-            ></input>
-            {/* percantage of account */}
-            <label htmlFor="coinAmount">percentage of account</label>
-            <input
-              readOnly
-              value={rangeValue}
-              type="number"
-              id="coinAmount"
-              min="0"
-              max="100"
-              step="1"
-            ></input>
-            {/* transaction cost */}
-            <label htmlFor="cost" type="number" value={cost}>
-              Cost:
-            </label>
-            <input readOnly type="number" id="cost" value={cost}></input>
-            {/* coins amount */}
-            <label htmlFor="amount" type="number">
-              Amount:
-            </label>
-            <input readOnly type="number" id="amount" value={amount}></input>
-            {/* submit buttons */}
-            <button
-              onClick={() => {
-                setSide("buy");
-              }}
-              type="submit"
-              className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            >
-              Buy
-            </button>
-            <button
-              onClick={() => {
-                setSide("sell");
-              }}
-              type="submit"
-              className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            >
-              Sell
-            </button>
-          </form>
-        </>
-      )}
-    </div>
+              {/* select options input */}
+              <select
+                id="selected"
+                onChange={(e) => {
+                  setSelectedCoin(e.target.value);
+                }}
+              >
+                <option></option>
+                {selectOptions?.map((option) => {
+                  return (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  );
+                })}
+              </select>
+              {/* range input */}
+              <label htmlFor="range">Select Percent of you cash</label>
+              <input
+                className={selectedCoin?.length < 1 ? "block" : "hidden"}
+                readOnly
+                defaultValue="0"
+                type="range"
+                disabled
+              ></input>
+              <input
+                className={selectedCoin?.length < 1 ? "hidden" : "block"}
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                id="range"
+                value={rangeValue}
+                onChange={(e) => {
+                  setRangeValue(e.target.value);
+                }}
+              ></input>
+              {/* percantage of account */}
+              <label htmlFor="coinAmount">percentage of account</label>
+              <input
+                readOnly
+                value={rangeValue}
+                type="number"
+                id="coinAmount"
+                min="0"
+                max="100"
+                step="1"
+              ></input>
+              {/* transaction cost */}
+              <label htmlFor="cost" type="number" value={cost}>
+                Cost:
+              </label>
+              <input readOnly type="number" id="cost" value={cost}></input>
+              {/* coins amount */}
+              <label htmlFor="amount" type="number">
+                Amount:
+              </label>
+              <input readOnly type="number" id="amount" value={amount}></input>
+              {/* submit buttons */}
+              <button
+                onClick={() => {
+                  setSide("buy");
+                }}
+                type="submit"
+                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              >
+                Buy
+              </button>
+              <button
+                onClick={() => {
+                  setSide("sell");
+                }}
+                type="submit"
+                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              >
+                Sell
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </>
   );
 };

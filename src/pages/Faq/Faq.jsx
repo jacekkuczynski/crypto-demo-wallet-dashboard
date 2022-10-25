@@ -1,5 +1,10 @@
-import React from "react";
+import { FaqAccordion } from "../../components/FaqAccordion/FaqAccordion";
+import { PageTransitionAnim } from "../../components/PageTransitionAnim/PageTransitionAnim";
 
 export const Faq = () => {
-  return <div>Faq</div>;
+  return (
+    <PageTransitionAnim>
+      <FaqAccordion />
+    </PageTransitionAnim>
+  );
 };
