@@ -35,10 +35,9 @@ export const LoginPage = () => {
         </div>
         <div>
           {isLogin ? <LoginForm /> : <SignUpForm />}
-          <div className="flex justify-between underline text-blue-500 ">
+          <div className="flex justify-between items-centerunderline text-blue-500 ">
             {isLogin ? signUpBtn : loginBtn}
             <button className="hover:text-blue-400"></button>
-            <button className="hover:text-blue-400">forgot password</button>
           </div>
           <div className="flex  justify-center"></div>
         </div>

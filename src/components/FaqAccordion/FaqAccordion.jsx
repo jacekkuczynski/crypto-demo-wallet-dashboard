@@ -9,8 +9,8 @@ export const FaqAccordion = () => {
           Frequently Asked Questions
         </h1>
         <p className="text-gray-600 max-w-lg mx-auto text-lg">
-          Answered all frequently asked questions, Still confused? feel free to
-          contact us.
+          Officia aliquip fugiat sit consequat culpa laboris excepteur aute nisi
+          Lorem.
         </p>
       </div>
       <div className="mt-14 max-w-2xl mx-auto">

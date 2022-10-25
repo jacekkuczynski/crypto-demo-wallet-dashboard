@@ -33,7 +33,6 @@ export const useFetchCoinsData = () => {
             };
           })
         );
-        console.log(data[0]);
       })
       .catch((err) => {
         if (err.response || err.request) {
