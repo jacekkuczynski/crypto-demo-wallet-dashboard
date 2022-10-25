@@ -21,7 +21,7 @@ export const HistoryTable = () => {
           return (
             <tbody key={i}>
               <tr className={`${i % 2 === 0 ? "bg-neutral-100" : ""}`}>
-                <td>{capitalizeFirstLetter(position.id)}</td>
+                <td className="capitalize">{position.id}</td>
                 {position.side === "buy" ? (
                   <td className="text-green-800 font-bold py-2 bg-pink">
                     {position.side.toUpperCase()}

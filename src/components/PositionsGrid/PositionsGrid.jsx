@@ -21,19 +21,17 @@ export const PositionsGrid = ({ coinData }) => {
   };
 
   return (
-    <div className="h-full w-full grid grid-cols-4">
-      {positions.map((position) => {
+    <div className="h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5   gap-4">
+      {positions.map((position, index) => {
         return (
-          <PositionCard position={position} handleClosePos={handleClosePos} />
+          <PositionCard
+            key={index}
+            position={position}
+            handleClosePos={handleClosePos}
+            currentPrice={currentPrice}
+          />
         );
       })}
     </div>
   );
 };
-
-// amount: 2.330227897242336;
-// cost: 47291.9751745332;
-// date: "Tue, 25 Oct 2022 19:20:23 GMT";
-// id: "bitcoin";
-// price: 20295;
-// side: "sell";

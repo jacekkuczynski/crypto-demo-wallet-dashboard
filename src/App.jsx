@@ -32,7 +32,7 @@ const App = () => {
       <Toaster position="bottom-right" />
       <ErrorModal />
       <Sidebar />
-      <div className="w-full pb-8 pt-20 pl-4 md:px-8 md:py-8 bg-neutral-50">
+      <div className="w-full pb-8 pt-20 md:px-8 md:py-8 bg-neutral-50">
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Homepage coinData={data} />} />

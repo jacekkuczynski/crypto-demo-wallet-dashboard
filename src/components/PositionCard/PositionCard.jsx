@@ -1,21 +1,65 @@
-export const PositionCard = ({ position, handleClosePos }) => {
+export const PositionCard = ({ position, handleClosePos, currentPrice }) => {
+  const priceNow = currentPrice(position.id);
+
+  const percentageDiff = (
+    ((position.price - priceNow) / position.price) *
+    100
+  ).toFixed(4);
+
   return (
-    <div className="flex flex-col  ">
-      <div className="">{position.id}</div>
-      <div className="">{position.amount}</div>
-      <div className="">{position.date}</div>
-      <div className="">{position.price}</div>
-      <div className="">{position.side}</div>
-      <div className="h-2/3 bg-cyan-600">{position.id}</div>
-      <div className="h-1/3 bg-slate-600">siema</div>
+    <div className="flex flex-col gap-1 items-center justify-around text-center h-fit p-5 mx-4 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100  ">
+      <div className="font-extrabold capitalize text-2xl underline">
+        {position.id}
+      </div>
+      <div>
+        <div className="font-extralight">amount</div>
+        <div className="">{position.amount}</div>
+      </div>
+      <div>
+        <div className="font-extralight">opening price</div>
+        <div className="font-medium">${position.price}</div>
+      </div>
+
+      <div>
+        <div className="font-extralight">side</div>
+        {position.side === "buy" ? (
+          <div className="text-green-800 font-extrabold uppercase">
+            {position.side}
+          </div>
+        ) : (
+          <div className="text-red-800 font-extrabold uppercase">
+            {position.side}
+          </div>
+        )}
+      </div>
+      <div>
+        <div className="font-extralight">current price</div>
+        {priceNow > position.price ? (
+          <div className="text-green-800 font-medium">${priceNow}</div>
+        ) : (
+          <div className="text-red-800 font-medium">${priceNow}</div>
+        )}
+      </div>
+      <div>
+        {percentageDiff > 0 ? (
+          <div className="text-green-800 font-medium">{percentageDiff}%</div>
+        ) : (
+          <div className="text-red-800 font-medium"> {percentageDiff}%</div>
+        )}
+      </div>
+
       <button
         onClick={() => {
           handleClosePos(position);
         }}
-        className="button"
+        className="button w-fit my-0.5"
       >
         Close Position
       </button>
+      <div>
+        <div className="font-extralight">opening date</div>
+        <div>{position.date.slice(4, -7)}</div>
+      </div>
     </div>
   );
 };
