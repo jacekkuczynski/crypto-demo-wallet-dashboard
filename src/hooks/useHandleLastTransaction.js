@@ -8,6 +8,7 @@ import {
   addPosition,
   removePosition,
 } from "../features/positions/positionsSlice";
+import { addToHistory } from "../features/history/historySlice";
 
 export const useHandleLastTransaction = (user) => {
   const cash = useSelector((state) => state.cash.value);
@@ -75,6 +76,13 @@ export const useHandleLastTransaction = (user) => {
       } else {
         dispatch(addPosition(lastTranasctionData));
       }
+    }
+  }, [lastTranasctionData, user]);
+
+  //handle history
+  useEffect(() => {
+    if (lastTranasctionData) {
+      dispatch(addToHistory(lastTranasctionData));
     }
   }, [lastTranasctionData, user]);
 };
