@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useGetCoordinates } from "../components/Weather/useGetCoordinates";
+import { useDispatch } from "react-redux";
+import { setModal } from "../features/errorModal/errorModalSlice";
 
 export const useFetchWeatherData = () => {
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
   const { coordinates } = useGetCoordinates();
+  const dispatch = useDispatch();
 
   const latitude = coordinates?.latitude;
   const longitude = coordinates?.longitude;
-  // const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
   const apiKey = "f0663bce71b86d5c2d154f0d593b47e8";
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
@@ -26,10 +28,12 @@ export const useFetchWeatherData = () => {
           });
         })
         .catch((err) => {
-          setError(err);
+          if (err.response || err.request) {
+            dispatch(setModal(true));
+          }
         });
     }
   }, [url, coordinates]);
 
-  return { data, error };
+  return { data };
 };

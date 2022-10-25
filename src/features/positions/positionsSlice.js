@@ -19,12 +19,9 @@ const positionsSlice = createSlice({
         return el.transactionID !== action.payload.transactionID;
       });
     },
-    resetPositions: (state) => {
-      state.value = [];
-    },
   },
 });
 
-export const { resetPositions, loadPositions, addPosition, removePosition } =
+export const { loadPositions, addPosition, removePosition } =
   positionsSlice.actions;
 export default positionsSlice.reducer;

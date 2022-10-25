@@ -41,10 +41,8 @@ export const InfoModal = ({ open, onClose, data }) => {
                     {data.name}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-base font-medium leading-6 text-gray-700">
-                      Price {data.price} USD
-                    </p>
-                    <p className="text-base font-medium leading-6 text-gray-700">
+                    <p className="info-modal-text">Price {data.price} USD</p>
+                    <p className="info-modal-text">
                       Change (last 24h){" "}
                       {data.priceChange > 0 ? (
                         <span className="text-green-600">
@@ -56,18 +54,16 @@ export const InfoModal = ({ open, onClose, data }) => {
                         </span>
                       )}
                     </p>
-                    <p className="text-base font-medium leading-6 text-gray-700">
+                    <p className="info-modal-text">
                       Low (last 24h) {data.low} USD
                     </p>
-                    <p className="text-base font-medium leading-6 text-gray-700">
+                    <p className="info-modal-text">
                       High (last 24h) {data.high} USD
                     </p>
-                    <p className="text-base font-medium leading-6 text-gray-700">
+                    <p className="info-modal-text">
                       All Time High {data.athDate?.slice(0, 10)}
                     </p>
-                    <p className="text-base font-medium leading-6 text-gray-700">
-                      ATH Price {data.ath} USD
-                    </p>
+                    <p className="info-modal-text">ATH Price {data.ath} USD</p>
                   </div>
 
                   <div className="mt-4">

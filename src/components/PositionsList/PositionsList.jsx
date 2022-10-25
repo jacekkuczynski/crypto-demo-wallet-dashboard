@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { setLastTransaction } from "../../features/lastTransaction/lastTransactionSlice";
-import { current } from "@reduxjs/toolkit";
 
 export const PositionsList = ({ coinData }) => {
   const [positionsData, setpositionsData] = useState(null);
