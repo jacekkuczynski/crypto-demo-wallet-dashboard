@@ -13,7 +13,7 @@ export const PositionCard = ({ position, handleClosePos, currentPrice }) => {
       </div>
       <div>
         <div className="font-extralight">amount</div>
-        <div className="">{position.amount}</div>
+        <div className="">{position.amount.toFixed(8)}</div>
       </div>
       <div>
         <div className="font-extralight">opening price</div>
@@ -52,7 +52,7 @@ export const PositionCard = ({ position, handleClosePos, currentPrice }) => {
         onClick={() => {
           handleClosePos(position);
         }}
-        className="button w-fit my-0.5"
+        className="button w-fit my-1"
       >
         Close Position
       </button>

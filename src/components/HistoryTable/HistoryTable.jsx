@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { capitalizeFirstLetter } from "../../helpers/helpers";
 
 export const HistoryTable = () => {
   const history = useSelector((state) => state.history.value);
