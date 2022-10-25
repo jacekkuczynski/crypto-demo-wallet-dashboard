@@ -1,16 +1,11 @@
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
 
 export const HistoryTable = () => {
-  const [positionsData, setpositionsData] = useState(null);
-  const positions = useSelector((state) => state.positions.value);
+  const history = useSelector((state) => state.history.value);
 
-  useEffect(() => {
-    if (positions) setpositionsData(positions);
-  }, [positions]);
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-scroll-auto">
       <table className="min-w-full text-center table-auto">
         <thead>
           <tr>
@@ -22,25 +17,24 @@ export const HistoryTable = () => {
             <th>Date</th>
           </tr>
         </thead>
-        {/* if index % one color : second color */}
-        {positionsData?.map((position, i) => {
+        {history?.map((position, i) => {
           return (
             <tbody key={i}>
-              <tr>
+              <tr className={`${i % 2 === 0 ? "bg-neutral-100" : ""}`}>
                 <td>{capitalizeFirstLetter(position.id)}</td>
                 {position.side === "buy" ? (
-                  <td className="text-green-800 font-bold">
+                  <td className="text-green-800 font-bold py-2 bg-pink">
                     {position.side.toUpperCase()}
                   </td>
                 ) : (
-                  <td className="text-red-800 font-bold">
+                  <td className="text-red-800 font-bold py-2">
                     {position.side.toUpperCase()}
                   </td>
                 )}
-                <td>{position.price}</td>
-                <td>~{position.amount.toFixed(2)}</td>
-                <td>{position.cost}</td>
-                <td>{position.date.slice(4, -12)}</td>
+                <td className="py-2">{position.price}</td>
+                <td className="py-2">~{position.amount.toFixed(2)}</td>
+                <td className="py-2">~${position.cost.toFixed(2)}</td>
+                <td className="py-2">{position.date.slice(4, -12)}</td>
               </tr>
             </tbody>
           );

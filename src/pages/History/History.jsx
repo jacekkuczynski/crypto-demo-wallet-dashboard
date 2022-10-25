@@ -1,5 +1,9 @@
-import React from "react";
+import { HistoryTable } from "../../components/HistoryTable/HistoryTable";
 
 export const History = () => {
-  return <div>History</div>;
+  return (
+    <div>
+      <HistoryTable />
+    </div>
+  );
 };

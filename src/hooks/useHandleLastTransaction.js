@@ -26,9 +26,11 @@ export const useHandleLastTransaction = (user) => {
         toast.success(
           `Congratulations! You just bought ${
             lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          } of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       } else if (
@@ -38,18 +40,22 @@ export const useHandleLastTransaction = (user) => {
         toast.success(
           `Congratulations! You just sold ${
             lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          } of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       } else {
         toast.success(
           `Congratulations! You just closed ${
             lastTranasctionData.amount
-          } of ${capitalizeFirstLetter(lastTranasctionData.id)} for $${
-            lastTranasctionData.cost
-          } (current coin price: $${lastTranasctionData.price})`,
+          } of ${capitalizeFirstLetter(
+            lastTranasctionData.id
+          )} for $${lastTranasctionData.cost.toFixed(
+            2
+          )} (current coin price: $${lastTranasctionData.price.toFixed(4)})`,
           { duration: 5000, icon: "🎉" }
         );
       }
