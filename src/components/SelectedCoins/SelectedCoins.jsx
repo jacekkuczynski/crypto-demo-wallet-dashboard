@@ -21,7 +21,7 @@ export const SelectedCoins = ({ coinData }) => {
           menu
         </h2>
       )}
-      <ul>
+      <ol>
         {selectedCoins?.map((coin) => {
           return (
             <div
@@ -48,7 +48,7 @@ export const SelectedCoins = ({ coinData }) => {
             </div>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 };

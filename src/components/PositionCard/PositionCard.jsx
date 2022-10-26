@@ -34,14 +34,11 @@ export const PositionCard = ({ position, handleClosePos, currentPrice }) => {
       </div>
       <div>
         <div className="font-extralight">current price</div>
-        {priceNow > position.price ? (
-          <div className="text-green-800 font-medium">${priceNow}</div>
-        ) : (
-          <div className="text-red-800 font-medium">${priceNow}</div>
-        )}
+        <div className="font-medium">${priceNow}</div>
       </div>
       <div>
-        {percentageDiff > 0 ? (
+        <div className="font-extralight">profit</div>
+        {percentageDiff >= 0 ? (
           <div className="text-green-800 font-medium">{percentageDiff}%</div>
         ) : (
           <div className="text-red-800 font-medium"> {percentageDiff}%</div>
