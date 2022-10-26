@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Crypto Demo Wallet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://crypto-demo-wallet-dashboard.web.app/
 
-## Available Scripts
+An app to track prices among one hundred of most popular cryptocurrencies and open transactions, without using real money.
 
-In the project directory, you can run:
+The app persist the data using firebase database and authentication.
 
-### `npm start`
+## Tech/libriaries used in project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- JavaScript
+- React | create-react-app
+- Redux | redux-toolkit
+- Firebase
+- react-router-dom
+- Tailwind CSS
+- headlessUI
+- heroIcons
+- axios
+- Framer Motion
+- react-select
+- react-hot-toast
+- react-clock
+- uuid
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+## Coins watchlist
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![watchlist](https://firebasestorage.googleapis.com/v0/b/crypto-demo-wallet-dashboard.appspot.com/o/watchlist.gif?alt=media&token=58595947-26e7-4525-9a5d-fd14b13a6b1c)
 
-### `npm run build`
+## Opening Transaction with coins from watchlist
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![buy/sell](https://firebasestorage.googleapis.com/v0/b/crypto-demo-wallet-dashboard.appspot.com/o/buysell.gif?alt=media&token=dcbd450b-eaeb-4b5a-8527-8efd2fb09334)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Account History
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![history](https://firebasestorage.googleapis.com/v0/b/crypto-demo-wallet-dashboard.appspot.com/o/history.gif?alt=media&token=d4e1e39c-a611-4534-b1e5-631ec9dd9bd4)
 
-### `npm run eject`
+## Currently open position with possibility to close them
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![positions](https://firebasestorage.googleapis.com/v0/b/crypto-demo-wallet-dashboard.appspot.com/o/positions.gif?alt=media&token=599c7df2-33e0-4f56-b278-903021e396f4)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Auth / RWD / welcome page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![buy/sell](https://firebasestorage.googleapis.com/v0/b/crypto-demo-wallet-dashboard.appspot.com/o/authrwdweather.gif?alt=media&token=b525dffa-3d91-4c75-bd33-34ddef15dc44)
