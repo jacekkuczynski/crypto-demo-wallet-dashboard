@@ -1,6 +1,7 @@
-import { loginWithEmailAndPassword } from "../../firebase/loginWithEmailAndPassword";
+import React from 'react';
+import { loginWithEmailAndPassword } from '../../firebase/loginWithEmailAndPassword';
 
-export const LoginForm = () => {
+export function LoginForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.currentTarget.email.value;
@@ -20,15 +21,15 @@ export const LoginForm = () => {
           type="email"
           id="email"
           className="border p-1"
-        ></input>
+        />
         <input
           placeholder="Enter a password"
           type="password"
           id="password"
           className="border p-1"
-        ></input>
-        <input type="submit" value="Submit" className="button"></input>
+        />
+        <input type="submit" value="Submit" className="button" />
       </form>
     </div>
   );
-};
+}

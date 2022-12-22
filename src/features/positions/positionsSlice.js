@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const positionsSlice = createSlice({
-  name: "positions",
+  name: 'positions',
   initialState: { value: [] },
   reducers: {
     loadPositions: (state, action) => {
@@ -15,9 +15,9 @@ const positionsSlice = createSlice({
       }
     },
     removePosition: (state, action) => {
-      state.value = state.value.filter((el) => {
-        return el.transactionID !== action.payload.transactionID;
-      });
+      state.value = state.value.filter(
+        (el) => el.transactionID !== action.payload.transactionID,
+      );
     },
   },
 });

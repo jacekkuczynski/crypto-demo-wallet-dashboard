@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { ref, set } from "firebase/database";
-import { db } from "../firebase/initialize";
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { ref, set } from 'firebase/database';
+import { db } from '../firebase/initialize';
 
 export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   const isDbChecked = useSelector((state) => state.isDbChecked.value);
@@ -12,7 +12,7 @@ export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   const historyStore = useSelector((state) => state.history.value);
 
   const saveToDatabase = (data, path) => {
-    set(ref(db, "users/" + userID + path), {
+    set(ref(db, `users/${userID}${path}`), {
       value: data,
     });
   };
@@ -20,27 +20,27 @@ export const useSubscribeToStateAndSaveToDatabase = (userID) => {
   useEffect(() => {
     const cashInitialValue = 10000;
     if (isDbChecked === true && userID) {
-      if (cashStore !== cashInitialValue) saveToDatabase(cashStore, "/cash/");
+      if (cashStore !== cashInitialValue) saveToDatabase(cashStore, '/cash/');
     }
   }, [userID, isDbChecked, cashStore]);
 
   useEffect(() => {
     if (isDbChecked === true && userID) {
       if (selectedCoinsStore.length > 0)
-        saveToDatabase(selectedCoinsStore, "/selectedCoins/");
+        saveToDatabase(selectedCoinsStore, '/selectedCoins/');
     }
   }, [userID, isDbChecked, selectedCoinsStore]);
 
   useEffect(() => {
     if (isDbChecked === true && userID) {
       if (positionsStore.length > 0)
-        saveToDatabase(positionsStore, "/positions/");
+        saveToDatabase(positionsStore, '/positions/');
     }
   }, [userID, isDbChecked, positionsStore]);
 
   useEffect(() => {
     if (isDbChecked === true && userID) {
-      if (historyStore.length > 0) saveToDatabase(historyStore, "/history/");
+      if (historyStore.length > 0) saveToDatabase(historyStore, '/history/');
     }
   }, [userID, historyStore, isDbChecked]);
 };

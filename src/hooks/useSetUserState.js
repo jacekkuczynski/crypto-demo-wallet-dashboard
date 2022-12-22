@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/initialize";
-import { useDispatch } from "react-redux";
-import { setUser } from "../features/user/userSlice";
-import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { auth } from '../firebase/initialize';
+import { setUser } from '../features/user/userSlice';
+import { setIsDbChecked } from '../features/isDbChecked/isDbChecked';
 
 export const useSetUserState = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const useSetUserState = () => {
       if (user?.isAnonymous === false) {
         dispatch(setUser(user.uid));
       } else if (user?.isAnonymous === true) {
-        dispatch(setUser("anonymous"));
+        dispatch(setUser('anonymous'));
       } else {
         dispatch(setIsDbChecked(false));
         dispatch(setUser(null));

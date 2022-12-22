@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const selectedCoinsSlice = createSlice({
-  name: "selectedCoins",
+  name: 'selectedCoins',
   initialState: { value: [] },
   reducers: {
     loadSelectedCoins: (state, action) => {
@@ -11,9 +11,7 @@ export const selectedCoinsSlice = createSlice({
       state.value = [...state.value, action.payload].flat();
     },
     removeSelectedCoins: (state, action) => {
-      state.value = state.value.filter((el) => {
-        return el !== action.payload;
-      });
+      state.value = state.value.filter((el) => el !== action.payload);
     },
   },
 });

@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const lastTransactionSlice = createSlice({
-  name: "lastTransaction",
+  name: 'lastTransaction',
   initialState: { value: null },
   reducers: {
     setLastTransaction: (state, action) => {

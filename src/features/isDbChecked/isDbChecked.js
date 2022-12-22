@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const isDbCheckedSlice = createSlice({
-  name: "isDbChecked",
+  name: 'isDbChecked',
   initialState: { value: false },
   reducers: {
     setIsDbChecked: (state, action) => {

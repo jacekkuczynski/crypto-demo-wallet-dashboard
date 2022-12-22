@@ -1,6 +1,6 @@
-import { ref, child, get } from "firebase/database";
-import { db } from "../firebase/initialize";
-import { useState, useEffect } from "react";
+import { ref, child, get } from 'firebase/database';
+import { useState, useEffect } from 'react';
+import { db } from '../firebase/initialize';
 
 export const useReadFromDatabase = (userID) => {
   const [data, setData] = useState(null);

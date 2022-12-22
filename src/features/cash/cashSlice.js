@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const cashSlice = createSlice({
-  name: "cash",
+  name: 'cash',
   initialState: { value: 10000 },
   reducers: {
     setCash: (state, action) => {

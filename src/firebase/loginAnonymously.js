@@ -1,5 +1,5 @@
-import { signInAnonymously } from "firebase/auth";
-import { auth } from "./initialize";
+import { signInAnonymously } from 'firebase/auth';
+import { auth } from './initialize';
 
 export const loginAnonymously = () => {
   signInAnonymously(auth)

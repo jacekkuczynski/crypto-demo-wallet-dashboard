@@ -1,4 +1,4 @@
-import { clocksData } from "./clocksData";
+import { clocksData } from './clocksData';
 
 export const useGetTimes = () => {
   const adjustForTimezone = (offset) => {
@@ -10,11 +10,9 @@ export const useGetTimes = () => {
 
     return dateWithOffset;
   };
-  const times = clocksData.map((city) => {
-    return {
-      city: city.name,
-      time: adjustForTimezone(city.offset),
-    };
-  });
+  const times = clocksData.map((city) => ({
+    city: city.name,
+    time: adjustForTimezone(city.offset),
+  }));
   return times;
 };

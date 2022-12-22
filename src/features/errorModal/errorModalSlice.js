@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const errorModalSlice = createSlice({
-  name: "errorModal",
+  name: 'errorModal',
   initialState: { value: false },
   reducers: {
     setModal: (state, action) => {

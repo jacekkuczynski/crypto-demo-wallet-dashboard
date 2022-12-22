@@ -1,11 +1,11 @@
-import { setIsDbChecked } from "../features/isDbChecked/isDbChecked";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useReadFromDatabase } from "./useReadFromDatabase";
-import { setCash } from "../features/cash/cashSlice";
-import { loadSelectedCoins } from "../features/selectedCoins/selectedCoinsSlice";
-import { loadPositions } from "../features/positions/positionsSlice";
-import { loadHistory } from "../features/history/historySlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { setIsDbChecked } from '../features/isDbChecked/isDbChecked';
+import { useReadFromDatabase } from './useReadFromDatabase';
+import { setCash } from '../features/cash/cashSlice';
+import { loadSelectedCoins } from '../features/selectedCoins/selectedCoinsSlice';
+import { loadPositions } from '../features/positions/positionsSlice';
+import { loadHistory } from '../features/history/historySlice';
 
 export const useLoadFromDatabase = (userID) => {
   const [snapshot, setSnapshot] = useState(null);
